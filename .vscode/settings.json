@@ -1,0 +1,5 @@
+{
+    "editor.formatOnSave": false,
+    "prettier.configPath": ".prettierrc",
+    "html.format.contentUnformatted": ""
+}
