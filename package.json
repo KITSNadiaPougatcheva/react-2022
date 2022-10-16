@@ -4,6 +4,7 @@
   "description": "React.JS Mentoring Program",
   "main": "script.js",
   "scripts": {
+    "prepare": "husky install",
     "test": "jest",
     "lint": "eslint \"{src,test}/**/*.js\"",
     "lint:fix": "npm run lint -- --fix",

@@ -1,6 +1,6 @@
 module.exports = {
   hooks: {
-    "pre-commit": "yarn run precommit",
-    "pre-push": "yarn run prepush",
+    "pre-commit": "npm run precommit",
+    "commit-msg": "husky works !"
   },
 };
