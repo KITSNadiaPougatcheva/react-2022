@@ -1,6 +1,6 @@
 module.exports = {
   hooks: {
-    "pre-commit": "npm run precommit",
+    "pre-commit": "npx lint-staged",
     "commit-msg": "husky works !"
   },
 };
