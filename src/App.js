@@ -1,20 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import Header from './Header';
-import MovieGallery from './MovieGallery';
-import './style.css';
+import Footer from "./Footer";
+import MovieGallery from "./MovieGallery";
+import Navigation from "./Navigation";
+import "./style.css";
 
 class App extends React.Component {
-    render() {
-        return (
-            <div className="App">
-                <Header />
-                <main>
-                    <MovieGallery showList="true" />
-                </main>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <>
+        <Navigation/>
+        <main>
+          <MovieGallery showList/>
+        </main>
+        <Footer/>
+      </>
+    );
+  }
 }
 
 export default App;

@@ -1,5 +1,11 @@
+@font-face {
+	font-family: "Lato";
+	src: url("../assets/Lato-Bold.ttf");
+}
+
 html {
 	font-size: 12px;
+	font-family: "Lato", Verdana, sans-serif;
 	font-weight: 400;
 }
 body {
@@ -20,7 +26,7 @@ header {
 	margin: 0;
 }
 div.header {
-	max-width: 1020px;
+	max-width: 1100px;
 	min-height: 89px;
     margin: auto;
     background-color: #232323; 
@@ -37,7 +43,7 @@ div.header {
 	margin: 40px;
 	font-size: 25px;
 	line-height: 6px;
-	color: #ffffff;
+	color: #f65261;
 	font-weight: 700;
 	text-align: left;
 	text-decoration: none;
@@ -45,17 +51,19 @@ div.header {
 
 .header--logo a {
 	text-decoration: none;
-	color: #ffffff;
+	color: #f65261;
 }
 
-.header--logo .asterix {
-	color:#f06c64;
+.header--logo a b {
+	font-size: larger;
 }
 
 nav.header--navigation {
 	float: right;
 	margin: 0;
 }
+
+
 /**  Navigation */
 
 ul.navigation {
@@ -97,7 +105,7 @@ section.slider {
 }
 
 div.slider {
-	max-width: 1020px;
+	max-width: 1100px;
 	max-height: 600px;
     margin: auto;
     background-color: #232323; 
@@ -210,7 +218,7 @@ div.our-services {
 	padding-left: 40px;
 	padding-top: 60px;
 	top: 0;
-	max-width: 1020px;
+	max-width: 1100px;
 	margin: auto;
 }
 
@@ -288,7 +296,7 @@ section.contact-form {
 }
 
 div.contact-form {
-	max-width: 1020px;
+	max-width: 1100px;
 	min-height: 648px;
 	margin: auto;
 	position: relative;
@@ -441,8 +449,8 @@ section.portfolio {
 }
 
 div.portfolio {
-	max-width: 1020px;
-	min-height: 800px;
+	max-width: 1100px;
+	/* min-height: 800px; */
 	margin: auto;
 	position: relative;
 	left: 0;
@@ -506,8 +514,8 @@ div.portfolio--images {
 
 	display: inline-block;
 
-	width: 200px;
-	height: 187px;
+	width: 322px;
+	height: 455px;
 
 	flex-grow: 1;
     flex-shrink: 0;
@@ -522,12 +530,24 @@ div.portfolio--images {
 	opacity: 0.5;
 }
 
+.movie--title {
+	color: #ffffff;
+}
+
+.movie--description {
+	color: #ffffff;
+}
+
 .portfolio-bottom {
 	max-width: 100%;
 	height: 6px;
 	background-color: #323746;
 }
 
+.movies--empty-list {
+	font-size: larger;
+	color: #ffffff;
+}
 
 @media (max-width: 376px) {
 	.portfolio--images img {
@@ -548,7 +568,7 @@ section.about-us {
 }
 
 div.about-us {
-	max-width: 1020px;
+	max-width: 1100px;
 	margin: auto;
 	position: relative;
 	left: 0;
@@ -651,12 +671,11 @@ div.about-us--gallery {
 footer {
 	width: 100%;
 	height: 100%;
-	background-color: #2d303a;
 }
 
 div.footer {
 	margin: auto;
-	max-width: 1020px;
+	max-width: 1100px;
 	height: 76px;
 	position: relative;
 	left: 0px;
@@ -667,11 +686,13 @@ div.footer {
     flex-wrap: wrap;
 }
 
-div.footer p {
-	margin-top: 0;
-	padding-top: 16px;
-	color: #3c404f;
-	display: inline-block;
+div.footer h2 {
+	margin: auto;
+	color: #f65261;
+}
+
+div.footer h2 b {
+	font-size: larger;
 }
 
 ul.social-media {

@@ -9,12 +9,16 @@ module.exports = () => {
     devtool: isProduction ? "nosources-source-map" : "source-map",
     watch: !isProduction,
     devServer: {
+    static: {
+      directory: path.join(__dirname, 'static'),
+      publicPath: '/static',
+    },
       compress: false,
       port: 9000,
       open: true,
     },
 
-    entry: "./src/script.js",
+    entry: "./src/index.js",
     output: {
       path: path.join(__dirname, "dist"),
       filename: "main.js",
@@ -44,21 +48,7 @@ module.exports = () => {
           use: {
             loader: "file-loader?name=fonts/[name].[ext]",
           },
-        },
-        {
-          test: /\.(gif|png|jpe?g|svg)$/i,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: "[name].[ext]",
-                outputPath: "./img/",
-                publicPath: "img/",
-              },
-            },
-            "image-webpack-loader",
-          ],
-        },
+        }
       ],
     },
     plugins: [
