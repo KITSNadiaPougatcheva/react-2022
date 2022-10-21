@@ -11,7 +11,7 @@ class App extends React.Component {
       <>
         <Navigation/>
         <main>
-          <MovieGallery showList/>
+          <MovieGallery/>
         </main>
         <Footer/>
       </>

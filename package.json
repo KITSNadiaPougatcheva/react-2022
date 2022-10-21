@@ -1,16 +1,17 @@
 {
   "name": "hw2",
   "version": "1.0.0",
-  "description": "React.JS Mentoring Program",
+  "description": "React.JS Mentoring Program 2022Q4",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "prepare": "husky install",
     "test": "jest",
     "lint": "eslint \"{src,test}/**/*.js\"",
     "lint:fix": "npm run lint -- --fix",
     "dev": "webpack",
     "prod": "webpack NODE_ENV=production",
-    "build:prod": "cross-env NODE_ENV=production node_modules/.bin/webpack -p",
+    "build:prod": "cross-env NODE_ENV=production node_modules/.bin/webpack",
     "build:dev": "cross-env NODE_ENV=development node_modules/.bin/webpack",
     "start:dev": "cross-env NODE_ENV=development node_modules/.bin/webpack-dev-server",
     "start:prod": "cross-env NODE_ENV=production node_modules/.bin/webpack-dev-server"
@@ -19,6 +20,9 @@
   "author": "Nadia Pougatcheva",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "^29.2.0",
+    "@types/node": "^18.11.3",
+    "@types/react-dom": "^18.0.6",
     "core-js": "^3.25.5",
     "cross-env": "^7.0.3",
     "prop-types": "^15.8.1",
@@ -40,7 +44,9 @@
     "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "^7.19.4",
     "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
     "@testing-library/react": "^13.4.0",
+    "@types/react": "^18.0.21",
     "babel-jest": "^29.2.0",
     "babel-loader": "^8.2.5",
     "babel-preset-es2015": "^6.24.1",
@@ -61,6 +67,8 @@
     "lint-staged": "^13.0.3",
     "lodash": "^4.17.21",
     "style-loader": "^3.3.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "typescript": "^4.8.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"

@@ -1,7 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-function MovieCard(props) {
+export interface MovieCardProps {
+  img: string | undefined; 
+  title: string;
+  description?: string
+}
+
+function MovieCard(props: MovieCardProps) {
   // throw new Error('My Test Error') // uncomment for testing puspose
   return (
     <div>
