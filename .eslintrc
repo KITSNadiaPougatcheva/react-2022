@@ -6,7 +6,7 @@
         "plugin:react/recommended",
         "plugin:jsx-a11y/recommended"
       ],
-    "plugins": ["react", "import", "jsx-a11y"],
+    "plugins": ["react", "import", "jsx-a11y","typescript"],
     "env": {
         "browser": true,
         "node": true,
@@ -36,6 +36,11 @@
         "PUBLIC_URL": true
     },
     "settings": {
+        "import/resolver": {
+            "node": {
+              "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        },
         "react": {
           "version": "detect"
         }

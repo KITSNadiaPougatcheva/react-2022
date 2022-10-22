@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ErrorBoundariesProps {
   children: any
@@ -9,8 +9,7 @@ interface ErrorBoundariesState {
 }
 
 class ErrorBoundaries extends React.Component {
-
-  readonly state: ErrorBoundariesState
+  readonly state: ErrorBoundariesState;
 
   constructor(readonly props: ErrorBoundariesProps) {
     super(props);
@@ -18,7 +17,7 @@ class ErrorBoundaries extends React.Component {
   }
 
   static getDerivedStateFromError(error: any) {
-    console.log(error)
+    console.log(error);
     return { hasError: true };
   }
 
@@ -27,7 +26,7 @@ class ErrorBoundaries extends React.Component {
   }
 
   render() {
-    if (this.state['hasError']) {
+    if (this.state.hasError) {
       return <p className="movies--empty-list">No movies found</p>;
     }
     return this.props.children;
