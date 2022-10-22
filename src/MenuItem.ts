@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
 interface MenuItemProps {
   text: string
   href: string
 }
 
-const MenuItem = (props: MenuItemProps) => React.createElement('li', null, React.createElement('a', props, props.text));
+const MenuItem = (props: MenuItemProps) => React.createElement("li", null, React.createElement("a", props, props.text));
 
 MenuItem.defaultProps = {
-  text: 'Home',
-  href: '#'
+  text: "Home",
+  href: "#"
 };
 
 export default MenuItem;
