@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = () => {
   const isProduction = process.env.NODE_ENV === "production";
@@ -18,24 +19,26 @@ module.exports = () => {
       open: true,
     },
 
-    entry: "./src/index.js",
+    entry: "./src/index.tsx",
+    //entry: [`${paths.src}/index.tsx`],
     output: {
       path: path.join(__dirname, "dist"),
       filename: "main.js",
     },
     resolve: {
       modules: [path.resolve(__dirname, "./src"), "node_modules"],
-      extensions: [".js", ".jsx"],
+      extensions: [".js", ".jsx", ".tsx", ".ts", ".json"],
+      plugins: [new TsconfigPathsPlugin()]
     },
     module: {
       rules: [
         {
-          test: /\.m?jsx?$/,
+          test: /\.(tsx|ts|js|jsx)?$/u,
           exclude: /(node_modules|bower_components)/,
           use: {
             loader: "babel-loader",
             options: {
-              presets: ["@babel/preset-env", "@babel/preset-react"],
+              presets: ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
             },
           },
         },
@@ -58,6 +61,7 @@ module.exports = () => {
         template: "index.html",
         filename: "index.html",
       }),
+      
     ],
   };
   return conf;

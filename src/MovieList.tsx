@@ -1,8 +1,7 @@
 import React from "react";
-
 import MovieCard from "./MovieCard";
-
 import { default as movies } from "./movies";
+
 function MovieList() {
   return (
     <>

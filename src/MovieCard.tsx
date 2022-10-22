@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { MovieCardProps } from "./MovieCardProps";
 
-function MovieCard(props) {
+function MovieCard(props: MovieCardProps) {
   // throw new Error('My Test Error') // uncomment for testing puspose
   return (
     <div>
