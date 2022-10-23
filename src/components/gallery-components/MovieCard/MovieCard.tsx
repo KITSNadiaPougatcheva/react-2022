@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { MovieCardProps } from "./MovieCardProps";
+import { MovieCardInterface } from "./MovieCardInterface";
 
-function MovieCard(props: MovieCardProps) {
+export function MovieCard(props: MovieCardInterface) {
   // throw new Error('My Test Error') // uncomment for testing puspose
   return (
     <div>
@@ -18,5 +18,3 @@ MovieCard.propTypes = {
   description: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired
 };
-
-export default MovieCard;

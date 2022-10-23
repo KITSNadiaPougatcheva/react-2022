@@ -1,6 +1,6 @@
 import React from "react";
 
-function Logo() {
+export function Logo() {
   return (
     <h1 className="header--logo">
       <a href="/">
@@ -9,5 +9,3 @@ function Logo() {
     </h1>
   );
 }
-
-export default Logo;

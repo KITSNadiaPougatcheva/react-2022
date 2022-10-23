@@ -1,11 +1,11 @@
 import React from "react";
-import Logo from "./Logo";
+import { Logo } from "../Logo/Logo";
 
 interface HeaderProps {
   children: any[]
 }
 
-class Header extends React.Component {
+export class Header extends React.Component {
   constructor(public readonly props: HeaderProps) { super(props); }
 
   render() {
@@ -21,5 +21,3 @@ class Header extends React.Component {
     );
   }
 }
-
-export default Header;

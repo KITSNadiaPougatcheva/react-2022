@@ -1,8 +1,8 @@
 import React from "react";
-import MovieCard from "./MovieCard";
-import { default as movies } from "./movies";
+import { default as movies } from "../../../data/movies";
+import { MovieCard } from "../MovieCard";
 
-function MovieList() {
+export function MovieList() {
   return (
     <>
       {movies.map((movie) => (
@@ -16,5 +16,3 @@ function MovieList() {
     </>
   );
 }
-
-export default MovieList;

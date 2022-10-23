@@ -1,9 +1,8 @@
 import React from "react";
+import ErrorBoundaries from "../../ErrorBoundaries/ErrorBoundaries";
+import { MovieList } from "../MovieList";
 
-import ErrorBoundaries from "./ErrorBoundaries";
-import MovieList from "./MovieList";
-
-class MovieGallery extends React.Component {
+export class MovieGallery extends React.Component {
   render() {
     return (
       <section className="portfolio" id="portfolio">
@@ -18,5 +17,3 @@ class MovieGallery extends React.Component {
     );
   }
 }
-
-export default MovieGallery;
