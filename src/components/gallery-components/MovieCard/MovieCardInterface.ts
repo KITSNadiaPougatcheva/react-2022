@@ -3,4 +3,5 @@ export interface MovieCardInterface {
     title: string
     description?: string
     key: string
+    range: number
 }

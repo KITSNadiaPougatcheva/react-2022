@@ -26,7 +26,9 @@
         "indent": ["error", 2],
         "linebreak-style": 1,
         "quotes": ["error", "double"],
-        "eol-last": 2
+        "eol-last": 2,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "jsx-a11y/no-noninteractive-element-interactions": 0
     },
     "globals": {
         "$": true,
