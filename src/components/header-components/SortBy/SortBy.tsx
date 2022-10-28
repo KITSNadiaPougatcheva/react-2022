@@ -5,7 +5,6 @@ interface SortByProps {
 }
 
 export class SortBy extends React.PureComponent {
-
   constructor(public readonly props: SortByProps) { super(props); }
 
   render() {

@@ -1,5 +1,4 @@
 import React from "react";
-import { default as movies } from "../../../data/movies";
 import { GalleryUtils } from "../../../utils/GalleryUtils";
 import { MovieCard } from "../MovieCard";
 
@@ -11,7 +10,11 @@ export class MovieList extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ movies })
+    console.log("componentDidMount ...")
+  }
+
+  componentDidUpdate() {
+    console.log("componentDidUpdate ...")
   }
 
   render() {

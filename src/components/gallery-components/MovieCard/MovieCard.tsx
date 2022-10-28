@@ -3,6 +3,7 @@ import React from "react";
 import { DeleteMovie } from "./DeleteMovie";
 import { EditMovie } from "./EditMovie";
 import { MovieCardInterface } from "./MovieCardInterface";
+
 export function MovieCard(props: MovieCardInterface) {
   // throw new Error('My Test Error') // uncomment for testing puspose
   return (

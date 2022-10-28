@@ -6,10 +6,12 @@ export class AddMovie extends React.PureComponent {
   state = {
     isOpen: false
   }
+
   hideModal = (event: any) => {
     event.preventDefault();
     this.setState({isOpen: false});
   }
+
   openModal = () => this.setState({isOpen: true});
 
   render() {
