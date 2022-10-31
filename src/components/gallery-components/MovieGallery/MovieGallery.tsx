@@ -3,7 +3,9 @@ import ErrorBoundaries from "../../ErrorBoundaries/ErrorBoundaries";
 import { MovieList } from "../MovieList";
 
 export class MovieGallery extends React.Component {
-  constructor(public readonly props: any) { super(props); }
+  constructor(public readonly props: any) {
+    super(props);
+  }
 
   render() {
     return (
@@ -11,7 +13,7 @@ export class MovieGallery extends React.Component {
         <div className="portfolio">
           <div className="portfolio--images">
             <ErrorBoundaries>
-              <MovieList sortBy={this.props.sortBy}/>
+              <MovieList sortBy={this.props.sortBy} />
             </ErrorBoundaries>
           </div>
         </div>

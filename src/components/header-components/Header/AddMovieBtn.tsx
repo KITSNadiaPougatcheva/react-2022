@@ -9,8 +9,14 @@ class AddMovieBtn extends React.PureComponent {
     return (
       <nav className="header--add-movie">
         <ul className="navigation">
-          <li className=""><input className="header--add-movie add-movie-btn" 
-            type="button" value="Add movie" onClick={this.props.openModal}/></li>
+          <li className="">
+            <input
+              className="header--add-movie add-movie-btn"
+              type="button"
+              value="Add movie"
+              onClick={this.props.openModal}
+            />
+          </li>
         </ul>
       </nav>
     );

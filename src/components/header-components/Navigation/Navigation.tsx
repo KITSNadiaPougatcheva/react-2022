@@ -3,11 +3,10 @@ import { MenuUtils } from "../../../utils/MenuUtils";
 import { MenuItem } from "../MenuItem";
 
 interface NavigationState {
-  menu: any[]
+  menu: any[];
 }
 
 export class Navigation extends React.Component {
-	
   readonly state: NavigationState;
 
   constructor(readonly props: any) {
@@ -23,7 +22,14 @@ export class Navigation extends React.Component {
         <div className="navigation">
           <nav className="header--navigation">
             <ul className="navigation">
-              {menu.map(item => <MenuItem id={item.id}  href={item.href} text={item.text} key={item.id}/>)}
+              {menu.map(item => (
+                <MenuItem
+                  id={item.id}
+                  href={item.href}
+                  text={item.text}
+                  key={item.id}
+                />
+              ))}
             </ul>
           </nav>
           {this.props.children}

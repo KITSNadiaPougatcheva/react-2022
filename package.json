@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "eslint \"{src,test}/**/*.{tsx,ts}\"",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --write \"{src,test,resources}/**/*.{ts,json,md}\"",
+    "format": "prettier --write \"{src,test,resources}/**/*.{ts,tsx,json,md}\"",
     "dev": "webpack",
     "prod": "webpack NODE_ENV=production",
     "build:prod": "cross-env NODE_ENV=production node_modules/.bin/webpack",

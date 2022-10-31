@@ -8,12 +8,12 @@ export function MovieCard(props: MovieCardInterface) {
   // throw new Error('My Test Error') // uncomment for testing puspose
   return (
     <div>
-      <img src={props.img} alt={props.title}/>
+      <img src={props.img} alt={props.title} />
       <h3 className="movie--title">{props.title}</h3>
       <p className="movie--description">{props.description}</p>
-      <EditMovie/>
-      <DeleteMovie/>
-    </div> 
+      <EditMovie />
+      <DeleteMovie />
+    </div>
   );
 }
 
