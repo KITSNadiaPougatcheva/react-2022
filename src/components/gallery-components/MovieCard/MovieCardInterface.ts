@@ -8,5 +8,4 @@ export interface MovieCardInterface {
     range: number;
     genre?: string;
   };
-  key: string;
 }
