@@ -1,7 +1,12 @@
 export interface MovieCardInterface {
-  img: string | undefined;
-  title: string;
-  description?: string;
+  details: {
+    img: string | undefined;
+    title: string;
+    description?: string;
+    short_description?: string;
+    key: string;
+    range: number;
+    genre?: string;
+  };
   key: string;
-  range: number;
 }
