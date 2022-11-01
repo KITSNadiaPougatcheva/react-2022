@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-// import { AddMovie } from "./AddMovie";
-// import { FindMovie } from "./FindMovie";
 import { AppHideMovieDetailsContext, AppMovieDetailsContext } from "../../context";
 import { Logo } from "../Logo";
 
@@ -17,7 +15,7 @@ export function MovieDetailsHeader(_props: any) {
                   className="movie-details--close-btn"
                   type="button"
                   value="X"
-                  onClick={toggleMovieDetails}
+                  onClick={toggleMovieDetails.hide}
                 />
         </div>
 

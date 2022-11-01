@@ -8,30 +8,17 @@ import {
     SortBy
 } from "../header-components";
 
-
 export function App() {
   const [movieQuery, setMovieQuery] = useState("");
   const [sorting, sortBy] = useState("none");
 
-
-  const [detailHeaderState, setDetailsHeaderState] = useState({
-    showMovieDetails: true,
-    theme: "black",
-    toggleTheme: () => { 
-        console.log(detailHeaderState); 
-        () => setDetailsHeaderState({ ...detailHeaderState, showMovieDetails: !detailHeaderState.showMovieDetails })}
-  })
-//   const detailHeaderState={
-//     showMovieDetails: false,
-//     theme: "light",
-//     toggleTheme: () => { console.log(detailHeaderState)}
-//   }
-  const [showMovieDetails, ] = useState(false)
+  const [showMovieDetails, setShowMovieDetails] = useState(true)
+  const [selectedMovie, setSelectedMovie] = useState({})
 
   return (
     <>
-    <AppHideMovieDetailsContext.Provider value={() => {}}>
-    <AppMovieDetailsContext.Provider value={false}>
+    <AppHideMovieDetailsContext.Provider value={{show: (movie) => {setShowMovieDetails(true); setSelectedMovie(movie)}, hide: () => setShowMovieDetails(false)}}>
+    <AppMovieDetailsContext.Provider value={showMovieDetails}>
       <Header findMovie={setMovieQuery} />
       <MovieDetailsHeader findMovie={setMovieQuery} />
       <Navigation>
