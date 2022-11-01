@@ -2,11 +2,13 @@
     "parser": "@typescript-eslint/parser",
     "extends": [
         "eslint:recommended",
+        "prettier",
+        "plugin:prettier/recommended",
         "plugin:import/errors",
         "plugin:react/recommended",
         "plugin:jsx-a11y/recommended"
       ],
-    "plugins": ["@typescript-eslint", "eslint-plugin-node", "react", "import", "jsx-a11y","typescript"],
+    "plugins": ["@typescript-eslint", "eslint-plugin-node", "prettier", "react", "import", "jsx-a11y","typescript"],
     "env": {
         "browser": true,
         "node": true,
@@ -26,7 +28,9 @@
         "indent": ["error", 2],
         "linebreak-style": 1,
         "quotes": ["error", "double"],
-        "eol-last": 2
+        "eol-last": 2,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "jsx-a11y/no-noninteractive-element-interactions": 0
     },
     "globals": {
         "$": true,

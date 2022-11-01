@@ -1,2 +1,2 @@
-export * from "./MenuItem"
-export * from "./MenuItemInterface"
+export * from "./MenuItem";
+export * from "./MenuItemInterface";

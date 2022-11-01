@@ -1,5 +1,5 @@
 export interface MenuItemInterface {
-    text: string
-    href: string
-    id: string
-  }
+  text: string;
+  href: string;
+  id: string;
+}
