@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
+import { AppHideMovieDetailsContext } from "../../context";
 import { DeleteMovie } from "./DeleteMovie";
 import { EditMovie } from "./EditMovie";
 import { MovieCardInterface } from "./MovieCardInterface";
-//import { MovieDetails } from "./MovieDetails";
-import { AppHideMovieDetailsContext } from "../../context";
 
 export function MovieCard(props: MovieCardInterface) {
   const toggleMovieDetails = useContext(AppHideMovieDetailsContext);

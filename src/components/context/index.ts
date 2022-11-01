@@ -13,6 +13,7 @@ export const AppMovieDetailsContext = React.createContext({
     year: undefined
   }
 });
+
 export const AppHideMovieDetailsContext = React.createContext({
   show: (movie: any) => console.log(movie),
   hide: () => {}

@@ -14,7 +14,7 @@ export function App() {
   const [movieQuery, setMovieQuery] = useState("");
   const [sorting, sortBy] = useState("none");
 
-  const [showMovieDetails, setShowMovieDetails] = useState(true);
+  const [showMovieDetails, setShowMovieDetails] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({});
 
   return (

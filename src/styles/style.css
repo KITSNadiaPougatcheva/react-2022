@@ -31,8 +31,7 @@ div.header {
 	min-height: 100px;
     margin: auto;
     background-color: #232323; 
-
-	justify-content: space-between;
+    justify-content: space-between;
     display: flex;
 }
 
@@ -814,11 +813,7 @@ ul.social-media img:hover {
 	right: 0px;
 	left: 0px;
 }
-/*
-.wrapper.inactive {
-	display: none;
-}
-*/
+
 .form-content {
 	border-radius: 10px 10px 10px 10px;
 	background: #232323;
@@ -867,71 +862,6 @@ ul.social-media img:hover {
     border-radius: 5px;
 }
 
-/* Movie details Modal popup windows */
-
-.movie-details-wrapper {
-	position: fixed;
-    top: 80px;
-	align-items: center;
-	justify-content: center;
-	z-index: 100;
-	right: 0px;
-	left: 0px;
-	margin: auto;
-	max-width: 1100px;
-}
-
-.movie-details-content {
-	background: #232323;
-	padding: 30px;
-	width: 100%;
-	position: absolute;
-	top: 0;
-	padding: 0px;
-	text-align: center;
-	opacity: 0.95;
-	display: flex;
-}
-
-.movie-details-content img {
-	width: 300px;
-	height: 400px;
-	display: block;
-	margin: 30px;
-}
-
-.movie-details-content .movie--details {
-	display: block;
-	margin: 30px;
-	color: white;
-	text-align: left;
-	font-size: 16px;
-	width: 100%;
-}
-
-.movie-details-content .movie--details div {
-	margin: 5px 5px 15px 0;
-}
-
-input.movie--close-btn {
-	background-color: #232323;
-	border: solid;
-	color: white;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	text-transform: uppercase;
-	font-size: 13px;
-	box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-	border-radius: 15px 15px 15px 15px;
-	margin: 10px 20px 20px 20px;
-	transition: all 0.3s ease-in-out;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	cursor: pointer;
-}
-
 /* Movie details Header */
 
 .movie-details-header-wrapper {
@@ -948,11 +878,8 @@ input.movie--close-btn {
 
 .movie-details-header-content {
 	background: #232323;
-	/* padding: 30px; */
 	height: 500px;
 	max-width: 1100px;
-	/* position: absolute;
-	top: 0; */
 	text-align: center;
 	opacity: 1;
 	display: flex;
@@ -992,7 +919,6 @@ input.movie-details--close-btn {
 	border-radius: 15px 15px 15px 15px;
 	margin: 10px 20px 20px 20px;
 	transition: all 0.3s ease-in-out;
-	/* position: absolute; */
 	top: 10px;
 	right: 10px;
 	cursor: pointer;
