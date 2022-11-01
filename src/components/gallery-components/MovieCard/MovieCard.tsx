@@ -6,7 +6,7 @@ import { MovieCardInterface } from "./MovieCardInterface";
 import { AppHideMovieDetailsContext } from "../../context";
 
 export function MovieCard(props: MovieCardInterface) {
-  const toggleMovieDetails = useContext(AppHideMovieDetailsContext)
+  const toggleMovieDetails = useContext(AppHideMovieDetailsContext);
 
   const { details } = props;
   return (

@@ -11,7 +11,8 @@ export class GalleryUtils {
         range: item.range,
         description: item.description,
         short_description: item.short_description,
-        genre: item.genre
+        genre: item.genre,
+        year: item.year
       },
       key: item.id
     }));
