@@ -1,6 +1,6 @@
 import { default as React, useState } from "react";
 import "../../styles/style.css";
-import { AppContext } from "../context";
+import { AppHideMovieDetailsContext, AppMovieDetailsContext } from "../context";
 import { Footer } from "../footer-components";
 import { MovieGallery } from "../gallery-components";
 import {
@@ -26,10 +26,12 @@ export function App() {
 //     theme: "light",
 //     toggleTheme: () => { console.log(detailHeaderState)}
 //   }
+  const [showMovieDetails, ] = useState(false)
 
   return (
     <>
-    <AppContext.Provider value={detailHeaderState}>
+    <AppHideMovieDetailsContext.Provider value={() => {}}>
+    <AppMovieDetailsContext.Provider value={false}>
       <Header findMovie={setMovieQuery} />
       <MovieDetailsHeader findMovie={setMovieQuery} />
       <Navigation>
@@ -40,7 +42,8 @@ export function App() {
         <MovieGallery sortBy={sorting} movieQuery={movieQuery} />
       </main>
       <Footer />
-      </AppContext.Provider>
+      </AppMovieDetailsContext.Provider>
+      </AppHideMovieDetailsContext.Provider>
     </>
   );
 }

@@ -1,5 +1,5 @@
-import React from "react";
-import { AppContext } from "../../context";
+import React, { useContext } from "react";
+import { AppMovieDetailsContext } from "../../context";
 import { Logo } from "../Logo/Logo";
 import { AddMovie } from "./AddMovie";
 import { FindMovie } from "./FindMovie";
@@ -9,27 +9,21 @@ interface HeaderProps {
   findMovie?: any;
 }
 
-export class Header extends React.Component {
-  constructor(public readonly props: HeaderProps) {
-    super(props);
-  }
-  static contextType = AppContext;
-  context!: React.ContextType<typeof AppContext>
-
-  render() {
+export function Header(props: any) {
+  const showMovieDetails = useContext(AppMovieDetailsContext)
     return (
       <>
-      {!this.context.showMovieDetails && 
+      {!showMovieDetails && 
       (<header>
         <div className="header">
           <Logo />
           <AddMovie />
         </div>
-        <FindMovie findMovie={this.props.findMovie} />
+        <FindMovie findMovie={props.findMovie} />
         <div className="header-bottom"></div>
       </header>)
     }
       </>
     );
-  }
+  
 }

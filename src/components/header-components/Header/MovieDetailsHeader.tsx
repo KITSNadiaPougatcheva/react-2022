@@ -1,28 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 // import { AddMovie } from "./AddMovie";
 // import { FindMovie } from "./FindMovie";
-import { AppContext } from "../../context";
+import { AppHideMovieDetailsContext, AppMovieDetailsContext } from "../../context";
 import { Logo } from "../Logo";
 
-export class MovieDetailsHeader extends React.Component {
-  constructor(public readonly props: any) {
-    super(props);
-  }
-  static contextType = AppContext;
-  context!: React.ContextType<typeof AppContext>
-  render() {
-    const showMovieDetails = this.context.showMovieDetails
-    console.log("MovieDetailsHeader", this.context)
+export function MovieDetailsHeader(_props: any) {
+  
+    const showMovieDetails = useContext(AppMovieDetailsContext)
+    const toggleMovieDetails = useContext(AppHideMovieDetailsContext)
     return (
       <>
-      {showMovieDetails &&  (<header>
+      {showMovieDetails && (<header>
         <div className="header">
           <Logo />
           <input
                   className="movie-details--close-btn"
                   type="button"
                   value="X"
-                  onClick={this.context.toggleTheme}
+                  onClick={toggleMovieDetails}
                 />
         </div>
 
@@ -31,7 +26,7 @@ export class MovieDetailsHeader extends React.Component {
             <div className="movie--details">
               <h2 className="movie--title">Movie Title</h2>
               <div className="movie--brif-description">
-              {this.context.theme}
+              {showMovieDetails}
               </div>
               <div className="movie--year">1994</div>
               <div className="movie--range">Rating: 5</div>
@@ -46,5 +41,4 @@ export class MovieDetailsHeader extends React.Component {
         }
         </>
     );
-  }
 }
