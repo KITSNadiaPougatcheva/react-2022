@@ -7,6 +7,7 @@ export function MovieDetails(props: any) {
     <>
       {props.isOpen && (
         <div className="movie-details-wrapper">
+            
           <div className="movie-details-content">
             <img src={props.details.img} alt={props.details.title} />
             <div className="movie--details">
@@ -29,6 +30,7 @@ export function MovieDetails(props: any) {
               </div>
             </div>
           </div>
+
         </div>
       )}
     </>

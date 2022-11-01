@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { DeleteMovie } from "./DeleteMovie";
 import { EditMovie } from "./EditMovie";
 import { MovieCardInterface } from "./MovieCardInterface";
-import { MovieDetails } from "./MovieDetails";
+//import { MovieDetails } from "./MovieDetails";
 
 export function MovieCard(props: MovieCardInterface) {
   // throw new Error('My Test Error') // uncomment for testing puspose
@@ -18,11 +18,11 @@ export function MovieCard(props: MovieCardInterface) {
         alt={details.title}
         onClick={callbackOpenDetails}
       />
-      <MovieDetails
+      {/* <MovieDetails
         isOpen={state}
         hideDetails={callbackHideDetails}
         details={details}
-      />
+      /> */}
       <h3 className="movie--title">{details.title}</h3>
       <p className="movie--rating">Rating : {details.range}</p>
       <p className="movie--description">{details.short_description}</p>
