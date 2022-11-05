@@ -1,48 +1,33 @@
-import { default as React, useState } from "react";
+import React, { useState } from "react";
+import { Provider } from "react-redux";
 import "../../styles/style.css";
-import { AppHideMovieDetailsContext, AppMovieDetailsContext } from "../context";
 import { Footer } from "../footer-components";
 import { MovieGallery } from "../gallery-components";
-import {
-    Header,
-    MovieDetailsHeader,
-    Navigation,
-    SortBy
-} from "../header-components";
+import { Header, Navigation, SortBy } from "../header-components";
+
+import store from "../../store";
 
 export function App() {
   const [movieQuery, setMovieQuery] = useState("");
   const [sorting, sortBy] = useState("none");
 
-  const [showMovieDetails, setShowMovieDetails] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState({});
+  // const [showMovieDetails, setShowMovieDetails] = useState(false);
+  // const [selectedMovie, setSelectedMovie] = useState({});
 
   return (
     <>
-      <AppHideMovieDetailsContext.Provider
-        value={{
-          show: movie => {
-            setShowMovieDetails(true);
-            setSelectedMovie(movie);
-          },
-          hide: () => setShowMovieDetails(false)
-        }}
-      >
-        <AppMovieDetailsContext.Provider
-          value={{ show: showMovieDetails, details: selectedMovie }}
-        >
-          <Header findMovie={setMovieQuery} />
-          <MovieDetailsHeader/>
-          <Navigation>
-            <SortBy sortBy={sortBy} />
-          </Navigation>
+      <Provider store={store}>
+        <Header findMovie={setMovieQuery} />
+        {/* <MovieDetailsHeader/> */}
+        <Navigation>
+          <SortBy sortBy={sortBy} />
+        </Navigation>
 
-          <main>
-            <MovieGallery sortBy={sorting} movieQuery={movieQuery} />
-          </main>
-          <Footer />
-        </AppMovieDetailsContext.Provider>
-      </AppHideMovieDetailsContext.Provider>
+        <main>
+          <MovieGallery sortBy={sorting} movieQuery={movieQuery} />
+        </main>
+        <Footer />
+      </Provider>
     </>
   );
 }

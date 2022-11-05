@@ -1,23 +1,21 @@
-import React, { useContext } from "react";
-import { AppMovieDetailsContext } from "../../context";
+import React from "react";
 import { Logo } from "../Logo/Logo";
 import { AddMovie } from "./AddMovie";
 import { FindMovie } from "./FindMovie";
 
-export function Header(props: any) {
-  const showMovieDetails = useContext(AppMovieDetailsContext);
+export function Header() {
   return (
     <>
-      {!showMovieDetails.show && (
+      {
         <header>
           <div className="header">
             <Logo />
             <AddMovie />
           </div>
-          <FindMovie findMovie={props.findMovie} />
+          <FindMovie />
           <div className="header-bottom"></div>
         </header>
-      )}
+      }
     </>
   );
 }

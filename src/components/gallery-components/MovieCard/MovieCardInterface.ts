@@ -1,12 +1,12 @@
 export interface MovieCardInterface {
   details: {
-    img: string | undefined;
+    poster_path: string | undefined;
     title: string;
-    description?: string;
+    overview?: string;
     short_description?: string;
-    key: string;
-    range: number;
-    genre?: string;
-    year?: number | string;
+    id: string;
+    vote_average: number;
+    genres?: string[];
+    release_date?: string;
   };
 }

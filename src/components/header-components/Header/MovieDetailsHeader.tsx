@@ -34,7 +34,7 @@ export function MovieDetailsHeader() {
                 Rating: {showMovieDetails.details.range}
               </div>
               <div className="movie--long-description">
-              {showMovieDetails.details.description}
+                {showMovieDetails.details.description}
               </div>
             </div>
           </div>

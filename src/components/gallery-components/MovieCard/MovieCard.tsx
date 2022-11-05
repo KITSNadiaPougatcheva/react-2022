@@ -11,12 +11,12 @@ export function MovieCard(props: MovieCardInterface) {
   return (
     <div className="movie-card-content">
       <img
-        src={details.img}
+        src={details.poster_path}
         alt={details.title}
         onClick={() => toggleMovieDetails.show(details)}
       />
       <h3 className="movie--title">{details.title}</h3>
-      <p className="movie--rating">Rating : {details.range}</p>
+      <p className="movie--rating">Rating : {details.vote_average}</p>
       <p className="movie--description">{details.short_description}</p>
       <EditMovie />
       <DeleteMovie />
