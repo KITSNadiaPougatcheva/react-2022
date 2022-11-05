@@ -1,39 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GalleryUtils } from "../../../utils/GalleryUtils";
 import { MovieCard } from "../MovieCard";
 
-export class MovieList extends React.Component {
-  constructor(public readonly props: any) {
-    super(props);
-  }
+export function MovieList(props: any) {
+  const [movies, setMovies] = useState(GalleryUtils.getMovieList());
 
-  state = {
-    movies: GalleryUtils.getMovieList()
-  };
-
-  componentDidMount() {
-    console.log("componentDidMount ...");
-  }
-
-  componentDidUpdate() {
-    console.log("componentDidUpdate ...");
-  }
-
-  render() {
-    return (
-      <>
-        {GalleryUtils.sortMovieList(this.state.movies, this.props.sortBy).map(
-          movie => (
-            <MovieCard
-              title={movie.title}
-              description={movie.description}
-              img={movie.img}
-              key={movie.key}
-              range={movie.range}
-            />
-          )
-        )}
-      </>
-    );
-  }
+  useEffect(() => {
+    console.log("Use effect...");
+    const filteresList = GalleryUtils.sortMovieList(
+      GalleryUtils.getMovieList(),
+      props.sortBy
+    ).filter(movie => {
+      return (
+        !props.movieQuery ||
+        movie.details.title
+          .toLowerCase()
+          .includes(props.movieQuery.toLowerCase())
+      );
+    });
+    setMovies(filteresList);
+  }, [props.sortBy, props.movieQuery]);
+  console.log("Rendering... by sorting", props.sortBy);
+  return (
+    <>
+      {movies.map(movie => (
+        <MovieCard details={movie.details} key={movie.details.key} />
+      ))}
+    </>
+  );
 }

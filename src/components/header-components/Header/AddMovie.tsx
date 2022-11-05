@@ -1,6 +1,6 @@
 import React from "react";
 import { ModalWithButton } from "../../universal-components";
-import AddMovieBtn from "./AddMovieBtn";
+import { AddMovieBtn } from "./AddMovieBtn";
 
 export class AddMovie extends React.PureComponent {
   state = {

@@ -1,28 +1,26 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 interface SortByProps {
-  onSelect: any;
+  sortBy: any;
 }
 
-export class SortBy extends React.PureComponent {
-  constructor(public readonly props: SortByProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <ul className="header--sorting">
-        <li>Sort by </li>
-        <li>
-          <select
-            className="header--sorting-selector"
-            onChange={this.props.onSelect}
-          >
-            <option>Alphabet</option>
-            <option>Rating</option>
-          </select>
-        </li>
-      </ul>
-    );
-  }
+export function SortBy(props: SortByProps) {
+  const { sortBy } = props;
+  const callback = useCallback(
+    (e: any) => {
+      sortBy(e?.currentTarget?.value);
+    },
+    [sortBy]
+  );
+  return (
+    <ul className="header--sorting">
+      <li>Sort by </li>
+      <li>
+        <select className="header--sorting-selector" onChange={callback}>
+          <option>Alphabet</option>
+          <option>Rating</option>
+        </select>
+      </li>
+    </ul>
+  );
 }

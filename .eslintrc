@@ -6,7 +6,8 @@
         "plugin:prettier/recommended",
         "plugin:import/errors",
         "plugin:react/recommended",
-        "plugin:jsx-a11y/recommended"
+        "plugin:jsx-a11y/recommended",
+        "plugin:react-hooks/recommended"
       ],
     "plugins": ["@typescript-eslint", "eslint-plugin-node", "prettier", "react", "import", "jsx-a11y","typescript"],
     "env": {

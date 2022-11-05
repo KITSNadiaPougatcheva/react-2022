@@ -1,6 +1,23 @@
 import React from "react";
 
+interface FindMovieProps {
+  findMovie: any;
+}
 export class FindMovie extends React.Component {
+  private readonly queryRef: any;
+
+  constructor(readonly props: FindMovieProps) {
+    super(props);
+    this.queryRef = React.createRef();
+  }
+
+  findMovieSubmit = (e: any) => {
+    e.preventDefault();
+    const queryInput = this.queryRef.current;
+    console.log("Find movie ... by", queryInput.value);
+    this.props.findMovie(queryInput.value);
+  };
+
   render() {
     return (
       <div className="header--find-movie">
@@ -19,6 +36,8 @@ export class FindMovie extends React.Component {
                   type="text"
                   placeholder="What do you want to watch ?"
                   required
+                  id="find-movie-by-query"
+                  ref={this.queryRef}
                 />
               </li>
               <li className="">
@@ -27,6 +46,7 @@ export class FindMovie extends React.Component {
                   name="find"
                   type="button"
                   value="Find movie"
+                  onClick={this.findMovieSubmit}
                 />
               </li>
             </ul>
