@@ -7,6 +7,15 @@ import {
   SORT_MOVIES_SELECTED
 } from "./action-types";
 
+interface StateChange {
+  payload: {
+    movies?: any[];
+    sortBy?: string;
+    query?: string;
+    genre?: string;
+  };
+}
+
 export const moviesRefreshed = (movies: any[]) => ({
   type: MOVIES_REFRESHED,
   payload: { movies }
@@ -40,7 +49,7 @@ export const getAllMoviesAsync = () => {
   };
 };
 
-export const sortMoviesAsync = ({ payload: { sortBy } }) => {
+export const sortMoviesAsync = ({ payload: { sortBy = "" } }: StateChange) => {
   return (dispatch: any, getState: any) => {
     dispatch(sortMoviesSelected(sortBy));
     const { genre, query } = getState();
@@ -51,7 +60,7 @@ export const sortMoviesAsync = ({ payload: { sortBy } }) => {
   };
 };
 
-export const findMoviesAsync = ({ payload: { query } }) => {
+export const findMoviesAsync = ({ payload: { query = "" } }: StateChange) => {
   return (dispatch: any, getState: any) => {
     dispatch(findMoviesSelected(query));
     const { genre, sortBy } = getState();
@@ -62,7 +71,7 @@ export const findMoviesAsync = ({ payload: { query } }) => {
   };
 };
 
-export const filterMoviesAsync = ({ payload: { genre } }) => {
+export const filterMoviesAsync = ({ payload: { genre = "" } }: StateChange) => {
   return (dispatch: any, getState: any) => {
     dispatch(filterMoviesSelected(genre));
     const { query, sortBy } = getState();

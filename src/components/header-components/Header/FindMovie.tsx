@@ -22,6 +22,7 @@ class BasicFindMovie extends React.Component {
     const { onFindMovie } = this.props;
     onFindMovie(queryInput.value);
   };
+
   render() {
     return (
       <div className="header--find-movie">

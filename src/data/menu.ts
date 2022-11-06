@@ -1,27 +1,37 @@
 export default [
   {
     title: "All",
-    href: "#all",
-    id: "00001"
+    href: "#All",
+    id: "menu00001"
   },
   {
-    title: "documentary",
-    href: "#documentary",
-    id: "00002"
+    title: "Drama",
+    href: "#Drama",
+    id: "menu00002"
   },
   {
-    title: "comedy",
-    href: "#comedy",
-    id: "00003"
+    title: "Romance",
+    href: "#Romance",
+    id: "menu00003"
   },
   {
-    title: "horror",
-    href: "#horror",
-    id: "00004"
+    title: "Animation",
+    href: "#Animation",
+    id: "menu00004"
   },
   {
-    title: "crime",
-    href: "#crime",
-    id: "00005"
+    title: "Family",
+    href: "#Family",
+    id: "menu00005"
+  },
+  {
+    title: "Comedy",
+    href: "#Comedy",
+    id: "menu00006"
+  },
+  {
+    title: "Fantasy",
+    href: "#Fantasy",
+    id: "menu00007"
   }
 ];
