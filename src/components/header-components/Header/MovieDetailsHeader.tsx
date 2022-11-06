@@ -1,16 +1,19 @@
 import React, { useContext } from "react";
+import { connect } from "react-redux";
+import { hideMovieDetails } from "../../../actions";
+import { State } from "../../../state/State";
 import {
   AppHideMovieDetailsContext,
   AppMovieDetailsContext
 } from "../../context";
 import { Logo } from "../Logo";
 
-export function MovieDetailsHeader() {
+function BasicMovieDetailsHeader(props: any) {
   const showMovieDetails = useContext(AppMovieDetailsContext);
   const toggleMovieDetails = useContext(AppHideMovieDetailsContext);
   return (
     <>
-      {showMovieDetails.show && (
+      {!!props.showMovieDetails && (
         <header>
           <div className="header">
             <Logo />
@@ -18,7 +21,7 @@ export function MovieDetailsHeader() {
               className="movie-details--close-btn"
               type="button"
               value="X"
-              onClick={toggleMovieDetails.hide}
+              onClick={props.onHideMovieDetails}
             />
           </div>
 
@@ -45,3 +48,15 @@ export function MovieDetailsHeader() {
     </>
   );
 }
+
+const mapStateToProps = ({ showMovieDetails }: State) => ({ showMovieDetails });
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onHideMovieDetails: () => dispatch(hideMovieDetails())
+  };
+};
+
+export const MovieDetailsHeader = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BasicMovieDetailsHeader);

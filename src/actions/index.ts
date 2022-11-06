@@ -1,20 +1,23 @@
+import { StateChange } from "../state/StateChange";
 import { MovieService } from "../utils/MovieService";
 import {
   ERROR,
   GENRE_SELECTED,
+  HIDE_MOVIE_DETAILS,
   MOVIES_REFRESHED,
   QUERY_SELECTED,
+  SHOW_MOVIE_DETAILS,
   SORT_MOVIES_SELECTED
 } from "./action-types";
 
-interface StateChange {
-  payload: {
-    movies?: any[];
-    sortBy?: string;
-    query?: string;
-    genre?: string;
-  };
-}
+export const showMovieDetails = (selectedMovieDetails: any) => ({
+  type: SHOW_MOVIE_DETAILS,
+  payload: { selectedMovieDetails }
+});
+
+export const hideMovieDetails = () => ({
+  type: HIDE_MOVIE_DETAILS
+});
 
 export const moviesRefreshed = (movies: any[]) => ({
   type: MOVIES_REFRESHED,

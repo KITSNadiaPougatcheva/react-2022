@@ -1,14 +1,29 @@
 import {
   ERROR,
   GENRE_SELECTED,
+  HIDE_MOVIE_DETAILS,
   MOVIES_REFRESHED,
   QUERY_SELECTED,
+  SHOW_MOVIE_DETAILS,
   SORT_MOVIES_SELECTED
 } from "../actions/action-types";
 
 export const rootReducer = (state = {}, action: any) => {
   console.log("Reducer previous state :", state, "ACTION :", action);
   switch (action.type) {
+    case SHOW_MOVIE_DETAILS: {
+      return {
+        ...state,
+        showMovieDetails: true,
+        selectedMovieDetails: action.payload.selectedMovieDetails
+      };
+    }
+    case HIDE_MOVIE_DETAILS: {
+      return {
+        ...state,
+        showMovieDetails: false
+      };
+    }
     case GENRE_SELECTED: {
       return {
         ...state,

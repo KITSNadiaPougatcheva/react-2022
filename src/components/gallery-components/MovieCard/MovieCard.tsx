@@ -1,19 +1,18 @@
-import React, { useContext } from "react";
-import { AppHideMovieDetailsContext } from "../../context";
+import React from "react";
+import { connect } from "react-redux";
+import { showMovieDetails } from "../../../actions";
 import { DeleteMovie } from "./DeleteMovie";
 import { EditMovie } from "./EditMovie";
-import { MovieCardInterface } from "./MovieCardInterface";
 
-export function MovieCard(props: MovieCardInterface) {
-  const toggleMovieDetails = useContext(AppHideMovieDetailsContext);
+function BasicMovieCard(props: any) {
+  const { details, onShowMovieDetails } = props;
 
-  const { details } = props;
   return (
     <div className="movie-card-content">
       <img
         src={details.poster_path}
         alt={details.title}
-        onClick={() => toggleMovieDetails.show(details)}
+        onClick={() => onShowMovieDetails(details)}
       />
       <h3 className="movie--title">{details.title}</h3>
       <p className="movie--rating">Rating : {details.vote_average}</p>
@@ -23,3 +22,12 @@ export function MovieCard(props: MovieCardInterface) {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onShowMovieDetails: (details: any) =>
+      dispatch(showMovieDetails({ payload: { selectedMovieDetails: details } }))
+  };
+};
+
+export const MovieCard = connect(null, mapDispatchToProps)(BasicMovieCard);
