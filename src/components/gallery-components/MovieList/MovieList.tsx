@@ -1,31 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { GalleryUtils } from "../../../utils/GalleryUtils";
+import React from "react";
+import { connect } from "react-redux";
 import { MovieCard } from "../MovieCard";
 
-export function MovieList(props: any) {
-  const [movies, setMovies] = useState(GalleryUtils.getMovieList());
-
-  useEffect(() => {
-    console.log("Use effect...");
-    const filteresList = GalleryUtils.sortMovieList(
-      GalleryUtils.getMovieList(),
-      props.sortBy
-    ).filter(movie => {
-      return (
-        !props.movieQuery ||
-        movie.details.title
-          .toLowerCase()
-          .includes(props.movieQuery.toLowerCase())
-      );
-    });
-    setMovies(filteresList);
-  }, [props.sortBy, props.movieQuery]);
-  console.log("Rendering... by sorting", props.sortBy);
+function BasicMovieList(props: any) {
+  const { movies } = props;
+  console.log("Rendering... ", "movies = ", movies);
   return (
     <>
-      {movies.map(movie => (
-        <MovieCard details={movie.details} key={movie.details.key} />
-      ))}
+      {movies &&
+        movies.map((movie: any) => (
+          <MovieCard details={movie} key={movie.id} />
+        ))}
     </>
   );
 }
+
+const mapStateToProps = ({ movies }: { movies: any[] }) => ({ movies });
+
+export const MovieList = connect(mapStateToProps)(BasicMovieList);

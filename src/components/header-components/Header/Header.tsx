@@ -1,23 +1,27 @@
-import React, { useContext } from "react";
-import { AppMovieDetailsContext } from "../../context";
+import React from "react";
+import { connect } from "react-redux";
+import { State } from "../../../state/State";
 import { Logo } from "../Logo/Logo";
 import { AddMovie } from "./AddMovie";
 import { FindMovie } from "./FindMovie";
 
-export function Header(props: any) {
-  const showMovieDetails = useContext(AppMovieDetailsContext);
+function BasicHeader(props: State) {
   return (
     <>
-      {!showMovieDetails.show && (
+      {!props.showMovieDetails && (
         <header>
           <div className="header">
             <Logo />
             <AddMovie />
           </div>
-          <FindMovie findMovie={props.findMovie} />
+          <FindMovie />
           <div className="header-bottom"></div>
         </header>
       )}
     </>
   );
 }
+
+const mapStateToProps = ({ showMovieDetails }: State) => ({ showMovieDetails });
+
+export const Header = connect(mapStateToProps)(BasicHeader);

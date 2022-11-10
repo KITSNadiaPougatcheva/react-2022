@@ -13,10 +13,7 @@ export class MovieGallery extends React.Component {
         <div className="portfolio">
           <div className="portfolio--images">
             <ErrorBoundaries>
-              <MovieList
-                sortBy={this.props.sortBy}
-                movieQuery={this.props.movieQuery}
-              />
+              <MovieList />
             </ErrorBoundaries>
           </div>
         </div>

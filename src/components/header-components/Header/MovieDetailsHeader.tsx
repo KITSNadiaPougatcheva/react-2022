@@ -1,16 +1,13 @@
-import React, { useContext } from "react";
-import {
-  AppHideMovieDetailsContext,
-  AppMovieDetailsContext
-} from "../../context";
+import React from "react";
+import { connect } from "react-redux";
+import { hideMovieDetails } from "../../../actions";
+import { State } from "../../../state/State";
 import { Logo } from "../Logo";
 
-export function MovieDetailsHeader() {
-  const showMovieDetails = useContext(AppMovieDetailsContext);
-  const toggleMovieDetails = useContext(AppHideMovieDetailsContext);
+function BasicMovieDetailsHeader(props: any) {
   return (
     <>
-      {showMovieDetails.show && (
+      {!!props.showMovieDetails && (
         <header>
           <div className="header">
             <Logo />
@@ -18,30 +15,51 @@ export function MovieDetailsHeader() {
               className="movie-details--close-btn"
               type="button"
               value="X"
-              onClick={toggleMovieDetails.hide}
+              onClick={props.onHideMovieDetails}
             />
           </div>
 
           <div className="movie-details-header-content">
-            <img src={showMovieDetails.details.img} alt="test moview" />
+            <img
+              src={props.selectedMovieDetails.poster_path}
+              alt="test movie"
+            />
             <div className="movie--details">
-              <h2 className="movie--title">{showMovieDetails.details.title}</h2>
+              <h2 className="movie--title">
+                {props.selectedMovieDetails.title}
+              </h2>
               <div className="movie--brif-description">
-                {showMovieDetails.details.short_description}
+                {props.selectedMovieDetails.tagline}
               </div>
-              <div className="movie--year">{showMovieDetails.details.year}</div>
+              <div className="movie--year">
+                {props.selectedMovieDetails.release_date}
+              </div>
               <div className="movie--range">
-                Rating: {showMovieDetails.details.range}
+                Rating: {props.selectedMovieDetails.vote_average}
               </div>
               <div className="movie--long-description">
-              {showMovieDetails.details.description}
+                {props.selectedMovieDetails.overview}
               </div>
             </div>
           </div>
-
           <div className="header-bottom"></div>
         </header>
       )}
     </>
   );
 }
+
+const mapStateToProps = ({
+  showMovieDetails,
+  selectedMovieDetails
+}: State) => ({ showMovieDetails, selectedMovieDetails });
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onHideMovieDetails: () => dispatch(hideMovieDetails())
+  };
+};
+
+export const MovieDetailsHeader = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BasicMovieDetailsHeader);

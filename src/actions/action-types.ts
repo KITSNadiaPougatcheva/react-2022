@@ -1,0 +1,17 @@
+export const ADD_MOVIE = "ADD_MOVIE";
+export const GET_MOVIES = "GET_MOVIES";
+export const REMOVE_MOVIE = "REMOVE_MOVIE";
+export const EDIT_MOVIE = "EDIT_MOVIE";
+export const FIND_MOVIES = "FIND_MOVIES";
+export const FILTER_MOVIES = "FILTER_MOVIES";
+export const SORT_MOVIES = "SORT_MOVIES";
+
+export const RUN_SORT_MOVIES = "RUN_SORT_MOVIES";
+export const MOVIES_REFRESHED = "MOVIES_REFRESHED";
+export const SORT_MOVIES_SELECTED = "SORT_MOVIES_SELECTED";
+export const QUERY_SELECTED = "QUERY_SELECTED";
+export const ERROR = "ERROR";
+export const GENRE_SELECTED = "GENRE_SELECTED";
+
+export const SHOW_MOVIE_DETAILS = "SHOW_MOVIE_DETAILS";
+export const HIDE_MOVIE_DETAILS = "HIDE_MOVIE_DETAILS";
