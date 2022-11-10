@@ -12,11 +12,12 @@ import {
 
 export const showMovieDetails = (selectedMovieDetails: any) => ({
   type: SHOW_MOVIE_DETAILS,
-  payload: { selectedMovieDetails }
+  payload: { selectedMovieDetails, showMovieDetails: true }
 });
 
 export const hideMovieDetails = () => ({
-  type: HIDE_MOVIE_DETAILS
+  type: HIDE_MOVIE_DETAILS,
+  payload: { showMovieDetails: false }
 });
 
 export const moviesRefreshed = (movies: any[]) => ({

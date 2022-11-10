@@ -6,7 +6,6 @@ import { EditMovie } from "./EditMovie";
 
 function BasicMovieCard(props: any) {
   const { details, onShowMovieDetails } = props;
-
   return (
     <div className="movie-card-content">
       <img
@@ -25,8 +24,7 @@ function BasicMovieCard(props: any) {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    onShowMovieDetails: (details: any) =>
-      dispatch(showMovieDetails({ payload: { selectedMovieDetails: details } }))
+    onShowMovieDetails: (details: any) => dispatch(showMovieDetails(details))
   };
 };
 
