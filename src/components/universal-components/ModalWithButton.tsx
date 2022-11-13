@@ -24,7 +24,7 @@ export class ModalWithButton extends React.PureComponent {
                   type="submit"
                   className="fadeIn fourth submit"
                   value="submit"
-                  onClick={this.props.hideModal}
+                  onClick={this.props.submit || this.props.hideModal}
                 />
               </form>
             </div>

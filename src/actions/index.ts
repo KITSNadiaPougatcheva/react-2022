@@ -45,6 +45,39 @@ export const setError = (error: any) => ({
   error
 });
 
+export const addMovieAsync = (movie: any) => {
+  return (dispatch: any) => {
+    MovieService.addMovieAsync({
+      poster_path: "http://posterpath.com/123",
+      runtime: 123,
+      genres: ["Action"],
+      ...movie
+    })
+      .then(movie => dispatch(moviesRefreshed([movie])))
+      .catch(setError);
+  };
+};
+
+export const deleteMovieAsync = (id: string) => {
+  return (dispatch: any, getState: any) => {
+    const { genre, query, sortBy } = getState();
+    MovieService.deleteMovieAsync(id)
+      .then(() => MovieService.findMoviesAsync({ sortBy, genre, query }))
+      .then(movies => dispatch(moviesRefreshed(movies)))
+      .catch(setError);
+  };
+};
+
+export const editMovieAsync = (movie: any) => {
+  return (dispatch: any, getState: any) => {
+    const { genre, query, sortBy } = getState();
+    MovieService.updateMovieAsync(movie)
+      .then(() => MovieService.findMoviesAsync({ sortBy, genre, query }))
+      .then(movies => dispatch(moviesRefreshed(movies)))
+      .catch(setError);
+  };
+};
+
 export const getAllMoviesAsync = () => {
   return (dispatch: any) => {
     MovieService.findMoviesAsync({})

@@ -16,8 +16,8 @@ function BasicMovieCard(props: any) {
       <h3 className="movie--title">{details.title}</h3>
       <p className="movie--rating">Rating : {details.vote_average}</p>
       <p className="movie--description">{details.short_description}</p>
-      <EditMovie />
-      <DeleteMovie />
+      <EditMovie details={details} />
+      <DeleteMovie details={details} />
     </div>
   );
 }
