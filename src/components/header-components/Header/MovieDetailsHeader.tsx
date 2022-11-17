@@ -53,6 +53,7 @@ const mapStateToProps = ({
   showMovieDetails,
   selectedMovieDetails
 }: State) => ({ showMovieDetails, selectedMovieDetails });
+
 const mapDispatchToProps = (dispatch: any) => {
   return {
     onHideMovieDetails: () => dispatch(hideMovieDetails())

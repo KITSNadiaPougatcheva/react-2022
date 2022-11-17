@@ -72,7 +72,7 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 export const FindMovie = connect(
-  ({ query }) => ({
+  ({ query }: any) => ({
     query
   }),
   mapDispatchToProps

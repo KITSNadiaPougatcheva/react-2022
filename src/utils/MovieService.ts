@@ -48,4 +48,78 @@ export class MovieService {
         return [];
       });
   }
+
+  static async addMovieAsync(movie: any) {
+    const url = `${MovieServiceConfig.BASE_PATH}${MovieServiceConfig.MOVIES_PATH}`;
+    console.log("Looking for movies : ", url);
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body: JSON.stringify(movie)
+    })
+      .then(res => {
+        if (!res.ok) {
+          const msg = `Error ${res.status} ${res.statusText}`;
+          console.error(msg);
+          res.json().then(errData => console.error("ERROR", errData));
+          throw new Error(msg);
+        }
+        return res.json();
+      })
+      .then(res => {
+        console.log("Added", res);
+        return res;
+      });
+  }
+
+  static async deleteMovieAsync(id: string) {
+    const url = `${MovieServiceConfig.BASE_PATH}${MovieServiceConfig.MOVIES_PATH}/${id}`;
+    console.log("Looking for movies : ", url);
+    return fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          const msg = `Error ${res.status} ${res.statusText}`;
+          console.error(msg);
+          res.json().then(errData => console.error("ERROR", errData));
+          throw new Error(msg);
+        }
+      })
+      .then(() => console.log("Deleted", id));
+  }
+
+  static async updateMovieAsync(movie: any) {
+    const url = `${MovieServiceConfig.BASE_PATH}${MovieServiceConfig.MOVIES_PATH}`;
+    console.log("Updating movie for movies : PUT ", url, "body :", movie);
+    return fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8"
+      },
+      body: JSON.stringify(movie)
+    })
+      .then(res => {
+        if (!res.ok) {
+          const msg = `Error ${res.status} ${res.statusText}`;
+          console.error(msg);
+          res
+            .json()
+            .then(errData =>
+              console.error("ERROR updating movie", errData, "payload", movie)
+            );
+          throw new Error(msg);
+        }
+        return res.json();
+      })
+      .then(res => {
+        console.log("Updated", res);
+        return res;
+      });
+  }
 }
