@@ -23,12 +23,11 @@ class EditMovieBasic extends React.PureComponent<Props> {
   openModal = () => this.setState({ ...this.props.details, isOpen: true });
 
   submit = (values: any) => {
-    console.log(`Editing movie #${this.props.details.id}`);
-    const title = values.title;
-    const overview = values.overview;
-    this.setState({ title, overview, isOpen: false });
+    console.log(`Editing movie #${this.props.details.id}`, values);
+    const { title, overview, vote_average, tagline } = values
+    this.setState({ title, overview, vote_average, tagline, isOpen: false });
     const { onEditMovie } = this.props;
-    onEditMovie({ ...this.props.details, title, overview });
+    onEditMovie({ ...this.props.details, title, overview, vote_average: Number(vote_average), tagline });
   };
 
   validate = (values: any) => {
@@ -38,6 +37,9 @@ class EditMovieBasic extends React.PureComponent<Props> {
     }
     if (!values.overview) {
       errors.overview = "Overview cannot be empty";
+    }
+    if (isNaN(values.vote_average)) {
+      errors.vote_average = "Rating should be number";
     }
     return errors;
   };
@@ -53,6 +55,8 @@ class EditMovieBasic extends React.PureComponent<Props> {
         initialValues={{
           title: this.props.details.title,
           overview: this.props.details.overview,
+          vote_average: this.props.details.vote_average,
+          tagline: this.props.details.tagline,
           openModal: this.openModal,
           hideModal: this.hideModal
         }}
@@ -76,7 +80,7 @@ class EditMovieBasic extends React.PureComponent<Props> {
               submit={handleSubmit}
               title="Edit Movie"
             >
-              <input
+              Title <input
                 type="text"
                 required
                 name="title"
@@ -85,7 +89,7 @@ class EditMovieBasic extends React.PureComponent<Props> {
                 onBlur={handleBlur}
               />
               {errors.title && <div>ERROR : {errors.title}</div>}
-              <input
+              Description <input
                 type="text"
                 required
                 name="overview"
@@ -94,6 +98,24 @@ class EditMovieBasic extends React.PureComponent<Props> {
                 onBlur={handleBlur}
               />
               {errors.overview && <div>ERROR : {errors.overview}</div>}
+              Tagline <input
+                type="text"
+                required
+                name="tagline"
+                value={values.tagline}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.tagline && <div>ERROR : {errors.tagline}</div>}
+              Rating <input
+                type="text"
+                required
+                name="vote_average"
+                value={values.vote_average}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.vote_average && <div>ERROR : {errors.vote_average}</div>}
             </ModalWithButton>
           </>
         )}

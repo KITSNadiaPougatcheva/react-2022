@@ -22,11 +22,10 @@ class AddMovieBasic extends React.PureComponent {
   };
 
   submit = (values: any, actions: any) => {
-    const title = values.title;
-    const overview = values.overview;
+    const { title, overview, vote_average, tagline } = values
     this.setState({ ...this.state, isOpen: false });
     const { onAddMovie } = this.props;
-    onAddMovie({ ...this.props.details, title, overview });
+    onAddMovie({ ...this.props.details, title, overview, vote_average: Number(vote_average), tagline  });
     actions.resetForm();
   };
 
@@ -37,6 +36,9 @@ class AddMovieBasic extends React.PureComponent {
     }
     if (!values.overview) {
       errors.overview = "Overview cannot be empty";
+    }
+    if (isNaN(values.vote_average)) {
+      errors.vote_average = "Rating should be a number";
     }
     return errors;
   };
@@ -49,6 +51,8 @@ class AddMovieBasic extends React.PureComponent {
         initialValues={{
           title: "",
           overview: "",
+          tagline: "",
+          vote_average: 0,
           openModal: this.openModal,
           hideModal: this.hideModal
         }}
@@ -94,6 +98,28 @@ class AddMovieBasic extends React.PureComponent {
                 onBlur={handleBlur}
               />
               {errors.overview && <div>ERROR : {errors.overview}</div>}
+              <input
+                type="text"
+                required
+                name="vote_average"
+                placeholder="rating"
+                id="addMovieRating"
+                defaultValue={values.vote_average}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.overview && <div>ERROR : {errors.overview}</div>}
+              <input
+                type="text"
+                required
+                name="tagline"
+                placeholder="tagline"
+                id="addMovieTagline"
+                defaultValue={values.tagline}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.tagline && <div>ERROR : {errors.tagline}</div>}
             </ModalWithButton>
           </>
         )}
