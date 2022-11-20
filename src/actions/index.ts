@@ -1,5 +1,5 @@
 import { StateChange } from "../state/StateChange";
-import { MovieService } from "../utils/MovieService";
+import { getSearchQuery, MovieService } from "../utils";
 import {
   ERROR,
   GENRE_SELECTED,
@@ -80,7 +80,7 @@ export const editMovieAsync = (movie: any) => {
 
 export const getAllMoviesAsync = () => {
   return (dispatch: any) => {
-    MovieService.findMoviesAsync({})
+    MovieService.findMoviesAsync({ query: getSearchQuery() })
       .then(movies => dispatch(moviesRefreshed(movies)))
       .catch(setError);
   };
@@ -97,12 +97,10 @@ export const sortMoviesAsync = ({ payload: { sortBy = "" } }: StateChange) => {
   };
 };
 
-export const findMoviesAsync = ({ payload: { query = "" } }: StateChange) => {
+export const findMoviesAsync = () => {
   return (dispatch: any, getState: any) => {
-    dispatch(findMoviesSelected(query));
     const { genre, sortBy } = getState();
-
-    MovieService.findMoviesAsync({ sortBy, genre, query })
+    MovieService.findMoviesAsync({ sortBy, genre, query: getSearchQuery() })
       .then(movies => dispatch(moviesRefreshed(movies)))
       .catch(setError);
   };

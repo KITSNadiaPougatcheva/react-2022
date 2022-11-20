@@ -22,10 +22,16 @@ class AddMovieBasic extends React.PureComponent {
   };
 
   submit = (values: any, actions: any) => {
-    const { title, overview, vote_average, tagline } = values
+    const { title, overview, vote_average, tagline } = values;
     this.setState({ ...this.state, isOpen: false });
     const { onAddMovie } = this.props;
-    onAddMovie({ ...this.props.details, title, overview, vote_average: Number(vote_average), tagline  });
+    onAddMovie({
+      ...this.props.details,
+      title,
+      overview,
+      vote_average: Number(vote_average),
+      tagline
+    });
     actions.resetForm();
   };
 

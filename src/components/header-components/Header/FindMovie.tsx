@@ -1,27 +1,42 @@
 import React from "react";
 import { connect } from "react-redux";
+import { createSearchParams } from "react-router-dom";
 import { findMoviesAsync } from "../../../actions/index";
+import { withParams } from "../../../utils";
 
 class BasicFindMovie extends React.Component {
-  private queryRef: any;
   public props: any;
+  state: any = {};
 
   constructor(props: any) {
     super(props);
-    this.queryRef = React.createRef();
   }
 
   onChange = (event: any) => {
-    console.log("Test", event.target.value);
+    this.setState({ query: event.target.value });
   };
 
-  findMovieSubmit = (e: any) => {
-    e.preventDefault();
-    const queryInput = this.queryRef.current;
-    console.log("Find movie ... by", queryInput.value);
+  findMovieSubmit = (event: any) => {
+    event.preventDefault();
+    const queryInput = this.state.query || "";
+    console.log("Find movie ... by", queryInput);
+    const path = {
+      pathname: "search",
+      search: `?${createSearchParams({
+        searchQuery: queryInput
+      })}`
+    };
+    const navigate = this.props.navigate;
+    navigate(path);
     const { onFindMovie } = this.props;
-    onFindMovie(queryInput.value);
+    onFindMovie(queryInput);
   };
+
+  componentDidMount() {
+    const queryParams = new URLSearchParams(this.props.location.search);
+    const query = queryParams.get("searchQuery") || "";
+    this.setState({ query });
+  }
 
   render() {
     return (
@@ -40,10 +55,9 @@ class BasicFindMovie extends React.Component {
                   name="name"
                   type="text"
                   placeholder="What do you want to watch ?"
-                  defaultValue=""
+                  defaultValue={this.state.query}
                   required
                   id="find-movie-by-query"
-                  ref={this.queryRef}
                   onChange={this.onChange}
                 />
               </li>
@@ -66,8 +80,7 @@ class BasicFindMovie extends React.Component {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    onFindMovie: (query: string) =>
-      dispatch(findMoviesAsync({ payload: { query } }))
+    onFindMovie: () => dispatch(findMoviesAsync())
   };
 };
 
@@ -76,4 +89,4 @@ export const FindMovie = connect(
     query
   }),
   mapDispatchToProps
-)(BasicFindMovie);
+)(withParams(BasicFindMovie));

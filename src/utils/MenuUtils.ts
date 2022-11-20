@@ -6,6 +6,7 @@ export class MenuUtils {
     return menu.map(item => ({
       text: item.title,
       href: item.href,
+      to: item.to,
       id: item.id
     }));
   }

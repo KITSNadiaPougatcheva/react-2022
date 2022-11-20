@@ -24,10 +24,16 @@ class EditMovieBasic extends React.PureComponent<Props> {
 
   submit = (values: any) => {
     console.log(`Editing movie #${this.props.details.id}`, values);
-    const { title, overview, vote_average, tagline } = values
+    const { title, overview, vote_average, tagline } = values;
     this.setState({ title, overview, vote_average, tagline, isOpen: false });
     const { onEditMovie } = this.props;
-    onEditMovie({ ...this.props.details, title, overview, vote_average: Number(vote_average), tagline });
+    onEditMovie({
+      ...this.props.details,
+      title,
+      overview,
+      vote_average: Number(vote_average),
+      tagline
+    });
   };
 
   validate = (values: any) => {
@@ -80,7 +86,8 @@ class EditMovieBasic extends React.PureComponent<Props> {
               submit={handleSubmit}
               title="Edit Movie"
             >
-              Title <input
+              Title{" "}
+              <input
                 type="text"
                 required
                 name="title"
@@ -89,7 +96,8 @@ class EditMovieBasic extends React.PureComponent<Props> {
                 onBlur={handleBlur}
               />
               {errors.title && <div>ERROR : {errors.title}</div>}
-              Description <input
+              Description{" "}
+              <input
                 type="text"
                 required
                 name="overview"
@@ -98,7 +106,8 @@ class EditMovieBasic extends React.PureComponent<Props> {
                 onBlur={handleBlur}
               />
               {errors.overview && <div>ERROR : {errors.overview}</div>}
-              Tagline <input
+              Tagline{" "}
+              <input
                 type="text"
                 required
                 name="tagline"
@@ -107,7 +116,8 @@ class EditMovieBasic extends React.PureComponent<Props> {
                 onBlur={handleBlur}
               />
               {errors.tagline && <div>ERROR : {errors.tagline}</div>}
-              Rating <input
+              Rating{" "}
+              <input
                 type="text"
                 required
                 name="vote_average"
