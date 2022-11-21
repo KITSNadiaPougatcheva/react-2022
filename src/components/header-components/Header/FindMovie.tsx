@@ -1,8 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createSearchParams } from "react-router-dom";
 import { findMoviesAsync } from "../../../actions/index";
-import { withParams } from "../../../utils";
+import {
+  createMovieSearchParams,
+  getCurrentLocationState,
+  withParams
+} from "../../../utils";
 
 class BasicFindMovie extends React.Component {
   public props: any;
@@ -13,29 +16,24 @@ class BasicFindMovie extends React.Component {
   }
 
   onChange = (event: any) => {
-    this.setState({ query: event.target.value });
+    this.setState({ ...this.state, searchQuery: event.target.value });
   };
 
   findMovieSubmit = (event: any) => {
     event.preventDefault();
-    const queryInput = this.state.query || "";
-    console.log("Find movie ... by", queryInput);
+    console.log("Find movie ... by", this.state.searchQuery);
     const path = {
-      pathname: "search",
-      search: `?${createSearchParams({
-        searchQuery: queryInput
-      })}`
+      pathname: `/search/${this.state.searchQuery}`,
+      search: `?${createMovieSearchParams({})}`
     };
-    const navigate = this.props.navigate;
-    navigate(path);
-    const { onFindMovie } = this.props;
-    onFindMovie(queryInput);
+    this.props.navigate(path, { replace: true });
+    this.props.onFindMovie();
   };
 
   componentDidMount() {
-    const queryParams = new URLSearchParams(this.props.location.search);
-    const query = queryParams.get("searchQuery") || "";
-    this.setState({ query });
+    this.setState(
+      getCurrentLocationState(this.props.location, this.props.params)
+    );
   }
 
   render() {
@@ -55,7 +53,7 @@ class BasicFindMovie extends React.Component {
                   name="name"
                   type="text"
                   placeholder="What do you want to watch ?"
-                  defaultValue={this.state.query}
+                  defaultValue={this.state.searchQuery}
                   required
                   id="find-movie-by-query"
                   onChange={this.onChange}

@@ -17,16 +17,22 @@ export function App() {
   return (
     <>
       <Provider store={store}>
-        <Header />
+        <Routes>
+          <Route path="/search/:query" element={<Header />}></Route>
+          <Route path="*" element={<Header />}></Route>
+        </Routes>
         <MovieDetailsHeader />
 
         <Navigation>
-          <SortBy />
+          <Routes>
+            <Route path="/search/:query" element={<SortBy />}></Route>
+            <Route path="*" element={<SortBy />}></Route>
+          </Routes>
         </Navigation>
 
         <main>
-          {/* <MovieGallery /> */}
           <Routes>
+            <Route path="/search/:query" element={<MovieGallery />}></Route>
             <Route path="/search" element={<MovieGallery />}></Route>
             <Route path="/" element={<Navigate to="/search" replace />} />
             <Route path="*" element={<NotFound />}></Route>

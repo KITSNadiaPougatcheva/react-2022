@@ -1,5 +1,9 @@
-import { StateChange } from "../state/StateChange";
-import { getSearchQuery, MovieService } from "../utils";
+import {
+  getGenreQueryParam,
+  getSearchQuery,
+  getSortByQueryParam,
+  MovieService
+} from "../utils";
 import {
   ERROR,
   GENRE_SELECTED,
@@ -9,6 +13,14 @@ import {
   SHOW_MOVIE_DETAILS,
   SORT_MOVIES_SELECTED
 } from "./action-types";
+
+const findMoviesWithAllQueryParams = (): Promise<any> => {
+  return MovieService.findMoviesAsync({
+    sortBy: getSortByQueryParam(),
+    genre: getGenreQueryParam(),
+    query: getSearchQuery()
+  });
+};
 
 export const showMovieDetails = (selectedMovieDetails: any) => ({
   type: SHOW_MOVIE_DETAILS,
@@ -59,20 +71,18 @@ export const addMovieAsync = (movie: any) => {
 };
 
 export const deleteMovieAsync = (id: string) => {
-  return (dispatch: any, getState: any) => {
-    const { genre, query, sortBy } = getState();
+  return (dispatch: any) => {
     MovieService.deleteMovieAsync(id)
-      .then(() => MovieService.findMoviesAsync({ sortBy, genre, query }))
+      .then(() => findMoviesWithAllQueryParams())
       .then(movies => dispatch(moviesRefreshed(movies)))
       .catch(setError);
   };
 };
 
 export const editMovieAsync = (movie: any) => {
-  return (dispatch: any, getState: any) => {
-    const { genre, query, sortBy } = getState();
+  return (dispatch: any) => {
     MovieService.updateMovieAsync(movie)
-      .then(() => MovieService.findMoviesAsync({ sortBy, genre, query }))
+      .then(() => findMoviesWithAllQueryParams())
       .then(movies => dispatch(moviesRefreshed(movies)))
       .catch(setError);
   };
@@ -80,38 +90,33 @@ export const editMovieAsync = (movie: any) => {
 
 export const getAllMoviesAsync = () => {
   return (dispatch: any) => {
-    MovieService.findMoviesAsync({ query: getSearchQuery() })
+    findMoviesWithAllQueryParams()
       .then(movies => dispatch(moviesRefreshed(movies)))
       .catch(setError);
   };
 };
 
-export const sortMoviesAsync = ({ payload: { sortBy = "" } }: StateChange) => {
-  return (dispatch: any, getState: any) => {
-    dispatch(sortMoviesSelected(sortBy));
-    const { genre, query } = getState();
-
-    MovieService.findMoviesAsync({ sortBy, genre, query })
+export const sortMoviesAsync = () => {
+  return (dispatch: any) => {
+    findMoviesWithAllQueryParams()
       .then(movies => dispatch(moviesRefreshed(movies)))
       .catch(setError);
   };
 };
 
 export const findMoviesAsync = () => {
-  return (dispatch: any, getState: any) => {
-    const { genre, sortBy } = getState();
-    MovieService.findMoviesAsync({ sortBy, genre, query: getSearchQuery() })
+  return (dispatch: any) => {
+    findMoviesWithAllQueryParams()
       .then(movies => dispatch(moviesRefreshed(movies)))
       .catch(setError);
   };
 };
 
-export const filterMoviesAsync = ({ payload: { genre = "" } }: StateChange) => {
-  return (dispatch: any, getState: any) => {
-    dispatch(filterMoviesSelected(genre));
-    const { query, sortBy } = getState();
+export const filterMoviesAsync = () => {
+  return (dispatch: any) => {
+    //dispatch(filterMoviesSelected(genre));
 
-    MovieService.findMoviesAsync({ sortBy, genre, query })
+    findMoviesWithAllQueryParams()
       .then(movies => dispatch(moviesRefreshed(movies)))
       .catch(setError);
   };
