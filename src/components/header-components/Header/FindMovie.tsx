@@ -28,6 +28,7 @@ class BasicFindMovie extends React.Component {
     };
     this.props.navigate(path, { replace: true });
     this.props.onFindMovie();
+    return false;
   };
 
   componentDidMount() {
@@ -45,6 +46,7 @@ class BasicFindMovie extends React.Component {
             name="find-movie-form"
             action="#"
             method="POST"
+            onSubmit={this.findMovieSubmit}
           >
             <ul className="find-movie-form">
               <li className="">
