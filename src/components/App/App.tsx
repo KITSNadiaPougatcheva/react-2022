@@ -5,12 +5,7 @@ import store from "../../store";
 import "../../styles/style.css";
 import { Footer } from "../footer-components";
 import { MovieGallery } from "../gallery-components";
-import {
-  Header,
-  MovieDetailsHeader,
-  Navigation,
-  SortBy
-} from "../header-components";
+import { WholeHeader } from "../header-components";
 import { NotFound } from "./NotFound";
 
 export function App() {
@@ -18,17 +13,9 @@ export function App() {
     <>
       <Provider store={store}>
         <Routes>
-          <Route path="/search/:query" element={<Header />}></Route>
-          <Route path="*" element={<Header />}></Route>
+          <Route path="/search/:query" element={<WholeHeader />}></Route>
+          <Route path="*" element={<WholeHeader />}></Route>
         </Routes>
-        <MovieDetailsHeader />
-
-        <Navigation>
-          <Routes>
-            <Route path="/search/:query" element={<SortBy />}></Route>
-            <Route path="*" element={<SortBy />}></Route>
-          </Routes>
-        </Navigation>
 
         <main>
           <Routes>

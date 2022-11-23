@@ -1,15 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
 import { filterMoviesAsync } from "../../../actions";
+import {
+  createMovieSearchParams,
+  getCurrentLocationState,
+  withParams
+} from "../../../utils";
 
 const BasicMenuItem = (props: any) => {
-  const { genre: selectedGenre } = props;
+  const { genre: selectedGenre, searchQuery } = getCurrentLocationState(
+    props.location,
+    props.params
+  );
 
   const filterMovieSubmit = (e: any) => {
     e.preventDefault();
-    const filter = e.currentTarget?.getAttribute("data-value");
-    console.log("Filter movie ... by", filter);
-    props.onFilterMovie(filter);
+    const genre = e.currentTarget?.getAttribute("data-value");
+    console.log("Filter movie ... by", genre);
+    const path = {
+      pathname: `/search/${searchQuery}`,
+      search: `?${createMovieSearchParams({ genre })}`
+    };
+    props.navigate(path, { replace: true });
+    props.onFilterMovie();
   };
   return (
     <li>
@@ -28,8 +41,7 @@ const BasicMenuItem = (props: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    onFilterMovie: (genre: string) =>
-      dispatch(filterMoviesAsync({ payload: { genre } }))
+    onFilterMovie: () => dispatch(filterMoviesAsync())
   };
 };
 
@@ -38,4 +50,4 @@ export const MenuItem = connect(
     genre
   }),
   mapDispatchToProps
-)(BasicMenuItem);
+)(withParams(BasicMenuItem));

@@ -30,7 +30,9 @@ export class MovieService {
       ? `&${MovieServiceConfig.SEARCH_PARAM}${query}&searchBy=title`
       : "";
     const sort = sortBy
-      ? `&${MovieServiceConfig.SORT_PARAM}${sortBy}&sortOrder=desc`
+      ? `&${MovieServiceConfig.SORT_PARAM}${sortBy}&sortOrder=${
+          sortBy === "title" ? "asc" : "desc"
+        }`
       : "";
     const url = `${MovieServiceConfig.BASE_PATH}${
       MovieServiceConfig.MOVIES_PATH

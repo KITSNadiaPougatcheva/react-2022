@@ -30,7 +30,11 @@ function BasicSortBy(props: any) {
       <ul className="header--sorting">
         <li>Sort by </li>
         <li>
-          <select className="header--sorting-selector" onChange={sortBySubmit} value={sortBy}>
+          <select
+            className="header--sorting-selector"
+            onChange={sortBySubmit}
+            value={sortBy}
+          >
             <option value="">--Please choose an option--</option>
             <option value="release_date">Release date</option>
             <option value="title">Alfabet</option>

@@ -14,7 +14,9 @@ function BasicMovieCard(props: any) {
         onClick={() => onShowMovieDetails(details)}
       />
       <h3 className="movie--title">{details.title}</h3>
-      <p className="movie--rating">Rating : {details.vote_average}</p>
+      <p className="movie--rating">
+        Rating : {details.vote_average} | Release date : {details.release_date}
+      </p>
       <p className="movie--description">{details.tagline}</p>
       <EditMovie details={details} />
       <DeleteMovie details={details} />
