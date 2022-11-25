@@ -124,4 +124,18 @@ export class MovieService {
         return res;
       });
   }
+
+  static async getMovieDetails(id: string) {
+    const url = `${MovieServiceConfig.BASE_PATH}${MovieServiceConfig.MOVIES_PATH}/${id}`;
+    console.log("Get movie details by ID ", id);
+    return fetch(url)
+      .then(result => result.json())
+      .then(res => {
+        return res || {};
+      })
+      .catch(error => {
+        console.error(error);
+        return {};
+      });
+  }
 }

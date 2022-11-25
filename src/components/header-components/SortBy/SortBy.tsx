@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { sortMoviesAsync } from "../../../actions";
+import { getAllMoviesAsync } from "../../../actions";
 import {
   createMovieSearchParams,
   getCurrentLocationState,
@@ -47,7 +47,7 @@ function BasicSortBy(props: any) {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    onSortMovie: () => dispatch(sortMoviesAsync())
+    onSortMovie: () => dispatch(getAllMoviesAsync())
   };
 };
 

@@ -2,9 +2,22 @@ import React from "react";
 import { connect } from "react-redux";
 import { hideMovieDetails } from "../../../actions";
 import { State } from "../../../state/State";
+import { createMovieSearchParams, withParams } from "../../../utils";
 import { Logo } from "../Logo";
 
 function BasicMovieDetailsHeader(props: any) {
+  const { selectedMovieDetails, onHideMovieDetails, navigate, params } = props;
+
+  const hideMovieDetails = () => {
+    const path = {
+      pathname: `/search/${params.query || ""}`,
+      search: `?${createMovieSearchParams({ movie: "" })}`
+    };
+    navigate(path, { replace: true });
+    onHideMovieDetails();
+    return false;
+  };
+
   return (
     <>
       {!!props.showMovieDetails && (
@@ -15,30 +28,25 @@ function BasicMovieDetailsHeader(props: any) {
               className="movie-details--close-btn"
               type="button"
               value="X"
-              onClick={props.onHideMovieDetails}
+              onClick={hideMovieDetails}
             />
           </div>
 
           <div className="movie-details-header-content">
-            <img
-              src={props.selectedMovieDetails.poster_path}
-              alt="test movie"
-            />
+            <img src={selectedMovieDetails.poster_path} alt="test movie" />
             <div className="movie--details">
-              <h2 className="movie--title">
-                {props.selectedMovieDetails.title}
-              </h2>
+              <h2 className="movie--title">{selectedMovieDetails.title}</h2>
               <div className="movie--brif-description">
-                {props.selectedMovieDetails.tagline}
+                {selectedMovieDetails.tagline}
               </div>
               <div className="movie--year">
-                {props.selectedMovieDetails.release_date}
+                {selectedMovieDetails.release_date}
               </div>
               <div className="movie--range">
-                Rating: {props.selectedMovieDetails.vote_average}
+                Rating: {selectedMovieDetails.vote_average}
               </div>
               <div className="movie--long-description">
-                {props.selectedMovieDetails.overview}
+                {selectedMovieDetails.overview}
               </div>
             </div>
           </div>
@@ -63,4 +71,4 @@ const mapDispatchToProps = (dispatch: any) => {
 export const MovieDetailsHeader = connect(
   mapStateToProps,
   mapDispatchToProps
-)(BasicMovieDetailsHeader);
+)(withParams(BasicMovieDetailsHeader));

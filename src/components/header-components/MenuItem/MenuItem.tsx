@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { filterMoviesAsync } from "../../../actions";
+import { getAllMoviesAsync } from "../../../actions";
 import {
   createMovieSearchParams,
   getCurrentLocationState,
@@ -41,7 +41,7 @@ const BasicMenuItem = (props: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    onFilterMovie: () => dispatch(filterMoviesAsync())
+    onFilterMovie: () => dispatch(getAllMoviesAsync())
   };
 };
 

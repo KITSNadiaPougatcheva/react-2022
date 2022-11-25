@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { findMoviesAsync } from "../../../actions/index";
+import { getAllMoviesAsync } from "../../../actions/index";
 import {
   createMovieSearchParams,
   getCurrentLocationState,
@@ -80,7 +80,7 @@ class BasicFindMovie extends React.Component {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    onFindMovie: () => dispatch(findMoviesAsync())
+    onFindMovie: () => dispatch(getAllMoviesAsync())
   };
 };
 
