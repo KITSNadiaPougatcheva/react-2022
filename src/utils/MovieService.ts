@@ -30,7 +30,9 @@ export class MovieService {
       ? `&${MovieServiceConfig.SEARCH_PARAM}${query}&searchBy=title`
       : "";
     const sort = sortBy
-      ? `&${MovieServiceConfig.SORT_PARAM}${sortBy}&sortOrder=desc`
+      ? `&${MovieServiceConfig.SORT_PARAM}${sortBy}&sortOrder=${
+          sortBy === "title" ? "asc" : "desc"
+        }`
       : "";
     const url = `${MovieServiceConfig.BASE_PATH}${
       MovieServiceConfig.MOVIES_PATH
@@ -120,6 +122,20 @@ export class MovieService {
       .then(res => {
         console.log("Updated", res);
         return res;
+      });
+  }
+
+  static async getMovieDetails(id: string) {
+    const url = `${MovieServiceConfig.BASE_PATH}${MovieServiceConfig.MOVIES_PATH}/${id}`;
+    console.log("Get movie details by ID ", id);
+    return fetch(url)
+      .then(result => result.json())
+      .then(res => {
+        return res || {};
+      })
+      .catch(error => {
+        console.error(error);
+        return {};
       });
   }
 }

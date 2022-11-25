@@ -1,27 +1,41 @@
 import React from "react";
 import { connect } from "react-redux";
-import { findMoviesAsync } from "../../../actions/index";
+import { getAllMoviesAsync } from "../../../actions/index";
+import {
+  createMovieSearchParams,
+  getCurrentLocationState,
+  withParams
+} from "../../../utils";
 
 class BasicFindMovie extends React.Component {
-  private queryRef: any;
   public props: any;
+  state: any = {};
 
   constructor(props: any) {
     super(props);
-    this.queryRef = React.createRef();
   }
 
   onChange = (event: any) => {
-    console.log("Test", event.target.value);
+    this.setState({ ...this.state, searchQuery: event.target.value });
   };
 
-  findMovieSubmit = (e: any) => {
-    e.preventDefault();
-    const queryInput = this.queryRef.current;
-    console.log("Find movie ... by", queryInput.value);
-    const { onFindMovie } = this.props;
-    onFindMovie(queryInput.value);
+  findMovieSubmit = (event: any) => {
+    event.preventDefault();
+    console.log("Find movie ... by", this.state.searchQuery);
+    const path = {
+      pathname: `/search/${this.state.searchQuery}`,
+      search: `?${createMovieSearchParams({})}`
+    };
+    this.props.navigate(path, { replace: true });
+    this.props.onFindMovie();
+    return false;
   };
+
+  componentDidMount() {
+    this.setState(
+      getCurrentLocationState(this.props.location, this.props.params)
+    );
+  }
 
   render() {
     return (
@@ -32,6 +46,7 @@ class BasicFindMovie extends React.Component {
             name="find-movie-form"
             action="#"
             method="POST"
+            onSubmit={this.findMovieSubmit}
           >
             <ul className="find-movie-form">
               <li className="">
@@ -40,10 +55,9 @@ class BasicFindMovie extends React.Component {
                   name="name"
                   type="text"
                   placeholder="What do you want to watch ?"
-                  defaultValue=""
+                  defaultValue={this.state.searchQuery}
                   required
                   id="find-movie-by-query"
-                  ref={this.queryRef}
                   onChange={this.onChange}
                 />
               </li>
@@ -66,8 +80,7 @@ class BasicFindMovie extends React.Component {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    onFindMovie: (query: string) =>
-      dispatch(findMoviesAsync({ payload: { query } }))
+    onFindMovie: () => dispatch(getAllMoviesAsync())
   };
 };
 
@@ -76,4 +89,4 @@ export const FindMovie = connect(
     query
   }),
   mapDispatchToProps
-)(BasicFindMovie);
+)(withParams(BasicFindMovie));

@@ -965,3 +965,9 @@ input.movie-details--close-btn {
 	cursor: pointer;
 }
 
+/** Not Found **/
+div.portfolio h2.not-found {
+	margin: auto;
+	color: #f65261;
+	text-align: center
+}

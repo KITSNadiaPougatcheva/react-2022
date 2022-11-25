@@ -10,13 +10,16 @@ module.exports = () => {
     devtool: isProduction ? "nosources-source-map" : "source-map",
     watch: !isProduction,
     devServer: {
-    static: {
-      directory: path.join(__dirname, 'static'),
-      publicPath: '/static',
-    },
+      static: {
+        directory: path.join(__dirname, 'static'),
+        publicPath: '/static',
+        //publicPath: '/',
+      },
       compress: false,
       port: 9000,
       open: true,
+      historyApiFallback: true
+      //publicPath: '/'
     },
 
     entry: "./src/index.tsx",

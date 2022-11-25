@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { State } from "../../../state/State";
+import { withParams } from "../../../utils";
 import { Logo } from "../Logo/Logo";
 import { AddMovie } from "./AddMovie";
 import { FindMovie } from "./FindMovie";
 
-function BasicHeader(props: State) {
+function BasicHeader(props: any) {
   return (
     <>
       {!props.showMovieDetails && (
@@ -24,4 +25,4 @@ function BasicHeader(props: State) {
 
 const mapStateToProps = ({ showMovieDetails }: State) => ({ showMovieDetails });
 
-export const Header = connect(mapStateToProps)(BasicHeader);
+export const Header = connect(mapStateToProps)(withParams(BasicHeader));
