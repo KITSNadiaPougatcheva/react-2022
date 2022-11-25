@@ -12,18 +12,15 @@ module.exports = () => {
     devServer: {
       static: {
         directory: path.join(__dirname, 'static'),
-        publicPath: '/static',
-        //publicPath: '/',
+        publicPath: '/static'
       },
       compress: false,
       port: 9000,
       open: true,
       historyApiFallback: true
-      //publicPath: '/'
     },
 
     entry: "./src/index.tsx",
-    //entry: [`${paths.src}/index.tsx`],
     output: {
       path: path.join(__dirname, "dist"),
       filename: "main.js",
