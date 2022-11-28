@@ -95,7 +95,7 @@ class EditMovieBasic extends React.PureComponent<Props> {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.title && <div>ERROR : {errors.title}</div>}
+              {errors.title && <div>ERR : {errors.title as string}</div>}
               Description{" "}
               <input
                 type="text"
@@ -105,7 +105,9 @@ class EditMovieBasic extends React.PureComponent<Props> {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.overview && <div>ERROR : {errors.overview}</div>}
+              {errors.overview && (
+                <div>ERROR : {errors.overview as string}</div>
+              )}
               Tagline{" "}
               <input
                 type="text"
@@ -115,7 +117,7 @@ class EditMovieBasic extends React.PureComponent<Props> {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.tagline && <div>ERROR : {errors.tagline}</div>}
+              {errors.tagline && <div>ERROR : {errors.tagline as string}</div>}
               Rating{" "}
               <input
                 type="text"
@@ -125,7 +127,9 @@ class EditMovieBasic extends React.PureComponent<Props> {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.vote_average && <div>ERROR : {errors.vote_average}</div>}
+              {errors.vote_average && (
+                <div>ERROR : {errors.vote_average as string}</div>
+              )}
             </ModalWithButton>
           </>
         )}
@@ -138,7 +142,4 @@ const mapDispatchToProps = {
   onEditMovie: editMovieAsync
 };
 
-export const EditMovie = connect<Props>(
-  null,
-  mapDispatchToProps
-)(EditMovieBasic);
+export const EditMovie = connect(null, mapDispatchToProps)(EditMovieBasic);
