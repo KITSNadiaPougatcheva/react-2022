@@ -1,18 +1,6 @@
 import { MovieServiceConfig } from "./MovieServiceConfig";
 
 export class MovieService {
-  static async getMoviesAsync(): Promise<any> {
-    const url = `${MovieServiceConfig.BASE_PATH}${MovieServiceConfig.MOVIES_PATH}`;
-    console.log("getMoviesAsync : url = ", url);
-    return fetch(url)
-      .then(result => result.json())
-      .then(res => (res && res.data) || [])
-      .catch(error => {
-        console.error(error);
-        return [];
-      });
-  }
-
   static async findMoviesAsync({
     sortBy,
     query,
@@ -51,7 +39,7 @@ export class MovieService {
       });
   }
 
-  static async addMovieAsync(movie: any) {
+  static async addMovieAsync(movie: any): Promise<any> {
     const url = `${MovieServiceConfig.BASE_PATH}${MovieServiceConfig.MOVIES_PATH}`;
     console.log("Looking for movies : ", url);
     return fetch(url, {
@@ -76,7 +64,7 @@ export class MovieService {
       });
   }
 
-  static async deleteMovieAsync(id: string) {
+  static async deleteMovieAsync(id: string): Promise<void> {
     const url = `${MovieServiceConfig.BASE_PATH}${MovieServiceConfig.MOVIES_PATH}/${id}`;
     console.log("Looking for movies : ", url);
     return fetch(url, {
@@ -96,7 +84,7 @@ export class MovieService {
       .then(() => console.log("Deleted", id));
   }
 
-  static async updateMovieAsync(movie: any) {
+  static async updateMovieAsync(movie: any): Promise<any> {
     const url = `${MovieServiceConfig.BASE_PATH}${MovieServiceConfig.MOVIES_PATH}`;
     console.log("Updating movie for movies : PUT ", url, "body :", movie);
     return fetch(url, {
@@ -125,7 +113,7 @@ export class MovieService {
       });
   }
 
-  static async getMovieDetails(id: string) {
+  static async getMovieDetails(id: string): Promise<any> {
     const url = `${MovieServiceConfig.BASE_PATH}${MovieServiceConfig.MOVIES_PATH}/${id}`;
     console.log("Get movie details by ID ", id);
     return fetch(url)
