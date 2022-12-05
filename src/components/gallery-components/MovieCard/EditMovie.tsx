@@ -23,7 +23,6 @@ class EditMovieBasic extends React.PureComponent<Props> {
   openModal = () => this.setState({ ...this.props.details, isOpen: true });
 
   submit = (values: any) => {
-    console.log(`Editing movie #${this.props.details.id}`, values);
     const { title, overview, vote_average, tagline } = values;
     this.setState({ title, overview, vote_average, tagline, isOpen: false });
     const { onEditMovie } = this.props;

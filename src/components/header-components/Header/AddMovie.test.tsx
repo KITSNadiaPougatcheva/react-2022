@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import { MovieService } from "../../../utils/MovieService";
-import { FindMovie } from "./FindMovie";
+import { AddMovie } from "./AddMovie";
 
 const mockStore = configureMockStore([thunk]);
 const mockUseLocationValue = {
@@ -25,29 +25,27 @@ jest.mock("react-router-dom", () => ({
   useLocation: jest.fn().mockImplementation(() => mockUseLocationValue)
 }));
 
-describe("FindMovie", () => {
+describe("AddMovie", () => {
   jest.spyOn(MovieService, "findMoviesAsync").mockResolvedValue([]);
+  jest.spyOn(MovieService, "addMovieAsync").mockResolvedValue({});
   const store = mockStore({});
 
-  test("renders FindMovie form and navigate to results page", () => {
+  test("renders AddMovie form", () => {
     render(
       <Provider store={store}>
-        <FindMovie />
+        <AddMovie />
       </Provider>
     );
-    expect(screen.getByText("Find movie")).toBeInTheDocument();
-    expect(screen.getByRole("textbox")).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText("What do you want to watch ?")
-    ).toBeInTheDocument();
 
-    fireEvent.change(screen.getByRole("textbox"), { target: { value: "the" } });
-    fireEvent.click(screen.getByText("Find movie"));
+    screen.debug()
+    expect(screen.getByText("Add movie")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Add movie"})).toBeInTheDocument();
 
-    expect(useNavigateMock).toBeCalledWith(
-      { pathname: "/search/the", search: "?sortBy=&genre=&movie=" },
-      { replace: true }
-    );
-    expect(MovieService.findMoviesAsync).toBeCalled();
+    fireEvent.click(screen.getByRole("button"));
+    screen.debug()
+    expect(screen.getAllByRole("textbox").length).toEqual(4);
+    expect(screen.getAllByText("Add movie").length).toEqual(1);
+
+//    expect(MovieService.findMoviesAsync).toBeCalled();
   });
 });
