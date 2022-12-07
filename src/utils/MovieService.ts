@@ -61,6 +61,10 @@ export class MovieService {
       .then(res => {
         console.log("Added", res);
         return res;
+      })
+      .catch(err => {
+        console.error(err);
+        return {};
       });
   }
 

@@ -92,7 +92,6 @@ class EditMovieBasic extends React.PureComponent<Props> {
                 required
                 name="title"
                 id="title"
-                role="textbox"
                 value={values.title}
                 onChange={handleChange}
                 onBlur={handleBlur}
