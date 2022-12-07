@@ -7,17 +7,19 @@ import {
 } from "react-router-dom";
 
 export const withParams = function (Component: any) {
-  return (props: any) => (
-    <Component
-      {...props}
-      params={useParams()}
-      location={useLocation()}
-      navigate={useNavigate()}
-    />
-  );
+  return (props: any) => {
+    return (
+      <Component
+        {...props}
+        params={useParams()}
+        location={useLocation()}
+        navigate={useNavigate()}
+      />
+    );
+  };
 };
 
-export const getCurrentLocationState = (location: any, params: any) => {
+export const getCurrentLocationState = (location: any, params: any): any => {
   const queryParams = new URLSearchParams(location.search);
   const searchQuery = params.query || "";
   const sortBy = queryParams.get("sortBy") || "";

@@ -28,10 +28,11 @@
         "react/prop-types": 0,
         "indent": ["error", 2, { "SwitchCase": 1 }],
         "linebreak-style": 1,
-        "quotes": ["error", "double"],
+        "quotes": ["error", "double", { "avoidEscape": true, "allowTemplateLiterals": false }],
         "eol-last": 2,
         "jsx-a11y/click-events-have-key-events": 0,
-        "jsx-a11y/no-noninteractive-element-interactions": 0
+        "jsx-a11y/no-noninteractive-element-interactions": 0,
+        "react/display-name": "off",
     },
     "globals": {
         "$": true,

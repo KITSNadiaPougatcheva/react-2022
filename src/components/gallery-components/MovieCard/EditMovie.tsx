@@ -23,7 +23,6 @@ class EditMovieBasic extends React.PureComponent<Props> {
   openModal = () => this.setState({ ...this.props.details, isOpen: true });
 
   submit = (values: any) => {
-    console.log(`Editing movie #${this.props.details.id}`, values);
     const { title, overview, vote_average, tagline } = values;
     this.setState({ title, overview, vote_average, tagline, isOpen: false });
     const { onEditMovie } = this.props;
@@ -86,46 +85,58 @@ class EditMovieBasic extends React.PureComponent<Props> {
               submit={handleSubmit}
               title="Edit Movie"
             >
-              Title{" "}
+              <label htmlFor="title">Title</label>
+              <br />
               <input
                 type="text"
                 required
                 name="title"
+                id="title"
                 value={values.title}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.title && <div>ERROR : {errors.title}</div>}
-              Description{" "}
+              {errors.title && <div>ERR : {errors.title as string}</div>}
+              <label htmlFor="overview">Description</label>
+              <br />
               <input
                 type="text"
                 required
                 name="overview"
+                id="overview"
                 value={values.overview}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.overview && <div>ERROR : {errors.overview}</div>}
-              Tagline{" "}
+              {errors.overview && (
+                <div>ERROR : {errors.overview as string}</div>
+              )}
+              <label htmlFor="tagline">Tagline</label>
+              <br />
               <input
                 type="text"
                 required
                 name="tagline"
+                id="tagline"
                 value={values.tagline}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.tagline && <div>ERROR : {errors.tagline}</div>}
-              Rating{" "}
+              {errors.tagline && <div>ERROR : {errors.tagline as string}</div>}
+              <label htmlFor="vote_average">Rating</label>
+              <br />
               <input
                 type="text"
                 required
                 name="vote_average"
+                id="vote_average"
                 value={values.vote_average}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.vote_average && <div>ERROR : {errors.vote_average}</div>}
+              {errors.vote_average && (
+                <div>ERROR : {errors.vote_average as string}</div>
+              )}
             </ModalWithButton>
           </>
         )}
@@ -138,7 +149,4 @@ const mapDispatchToProps = {
   onEditMovie: editMovieAsync
 };
 
-export const EditMovie = connect<Props>(
-  null,
-  mapDispatchToProps
-)(EditMovieBasic);
+export const EditMovie = connect(null, mapDispatchToProps)(EditMovieBasic);

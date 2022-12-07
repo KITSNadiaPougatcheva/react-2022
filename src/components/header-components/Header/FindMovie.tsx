@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAllMoviesAsync } from "../../../actions/index";
+import { getAllMoviesAsync } from "../../../actions";
 import {
   createMovieSearchParams,
   getCurrentLocationState,

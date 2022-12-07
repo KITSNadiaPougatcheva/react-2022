@@ -138,4 +138,4 @@ const mapDispatchToProps = {
   onAddMovie: addMovieAsync
 };
 
-export const AddMovie = connect(null, mapDispatchToProps)(AddMovieBasic);
+export const AddMovie = connect<any>(null, mapDispatchToProps)(AddMovieBasic);
